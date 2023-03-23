@@ -1,0 +1,32 @@
+.card-container {
+    border: 10px;
+    .card {
+        background-color: blue;
+        border          : 1px solid #ccc;
+        padding         : 10px;
+        width           : 300px;
+        height          : 500px;
+        display         : flex;
+        justify-content : center;
+        align-items     : center;
+        text-align      : center;
+        font-size       : 24px;
+        border-radius   : 10px solid grey;
+        border          : 1px;
+
+        .progressHtml {
+            height         : 25px;
+            background     : #6ec148;
+            color          : #fff;
+            width          : 70px;
+            border-radius  : 5px;
+            display        : absolute;
+            align-items    : center;
+            justify-content: center;
+            margin-left    : auto;
+            margin-top     : 5px;
+            margin-right   : 5px;
+            bottom         : 0;
+        }
+    }
+}
