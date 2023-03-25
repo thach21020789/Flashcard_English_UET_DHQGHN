@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import App from './views/App';
 import reportWebVitals from './reportWebVitals';
 import './styles/global.scss';
-
+import Login from './views/Admins/Login';
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Login></Login>
+    
   </React.StrictMode>,
   document.getElementById('root')
 );

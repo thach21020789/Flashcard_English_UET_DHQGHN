@@ -4,6 +4,8 @@ import Flashcard from './Flashcard/Flashcard';
 import Nav from './Nav/Nav.js';
 import Home from './Home/Home';
 import MiniGame from './MiniGames/MiniGame';
+import Login from './Admins/Login';
+
 import {
   BrowserRouter,
   Switch,
@@ -15,7 +17,7 @@ import {
 function App() {
   return (
     <>
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <Nav></Nav>
         <div className="App">
           <header className="App-header">
@@ -32,8 +34,8 @@ function App() {
             </Switch>
           </header>
         </div>
-      </BrowserRouter>
-    </>
+      </BrowserRouter> */}
+      </>
   );
 }
 
