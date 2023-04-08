@@ -8,7 +8,14 @@ import session from "express-session";
 import connectFlash from "connect-flash";
 import passport from "passport";
 
+// test
+import cors from "cors";
+
 let app = express();
+
+// test
+app.use(cors());
+
 
 //use cookie parser
 app.use(cookieParser('secret'));
