@@ -5,7 +5,7 @@ import Nav from './Nav/Nav.js';
 import Home from './Home/Home';
 import MiniGame from './MiniGames/MiniGame';
 import Login from './Admins/Login';
-
+import Test from './tests/Test';
 import {
   BrowserRouter,
   Switch,
@@ -17,7 +17,7 @@ import {
 function App() {
   return (
     <>
-      {/* <BrowserRouter>
+      <BrowserRouter>
         <Nav></Nav>
         <div className="App">
           <header className="App-header">
@@ -31,10 +31,13 @@ function App() {
               <Route path="/MiniGame" exact>
                 <MiniGame></MiniGame>
               </Route>
+              <Route path="/Test" exact>
+                <Test></Test>
+              </Route>
             </Switch>
           </header>
         </div>
-      </BrowserRouter> */}
+      </BrowserRouter>
       </>
   );
 }

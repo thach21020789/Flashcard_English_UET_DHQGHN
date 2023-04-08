@@ -1,10 +1,11 @@
 
 import React from "react";
 import './Login.scss';
-
+import { useState } from 'react';
+import { useHistory, withRouter } from 'react-router-dom';
 class Login extends React.Component {
     handleLogin = () =>{
-
+        this.props.history.push('/Home');
     }
     
     state = {
@@ -19,7 +20,7 @@ class Login extends React.Component {
                     <div class="shape"></div>
                     <div class="shape"></div>
                 </div>
-                <form onClick={this.handleLogin}>
+                <form onSubmit={this.handleLogin}>
                     <h3>Login Here</h3>
                     <label for="username">Username</label>
                     <input type="text" placeholder="Email or Phone" id="username" />
@@ -32,4 +33,4 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+export default withRouter(Login);

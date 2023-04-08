@@ -6,8 +6,9 @@ import './styles/global.scss';
 import Login from './views/Admins/Login';
 ReactDOM.render(
   <React.StrictMode>
-    <Login></Login>
-    
+    {/* <Login></Login> */}
+
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
