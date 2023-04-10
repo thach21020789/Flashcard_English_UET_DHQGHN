@@ -27,8 +27,8 @@ class Flashcard extends React.Component {
     }
 
     async componentDidMount() {
-        let res = await axios.get("http://localhost:3000/test");
-        console.log("testttttttttt:", res)
+        let res = await axios.get("http://localhost:3002/test");
+        console.log(">>>cheeck prop : ", res.data);
     }
 
     handleNextWord = () => {
@@ -47,7 +47,7 @@ class Flashcard extends React.Component {
     render() {
         let { i, words } = this.state;
         let res = axios.get("http://localhost:3000/test");
-        console.log("testttttttttt:", res)
+
         console.log(i);
         let wordEnglish = words[i].word;
         let definitions = words[i].definition
