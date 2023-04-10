@@ -1,0 +1,62 @@
+
+#container
+{
+    background-color: white;
+    width:810px;
+    height: 650px;
+    margin: 0px auto;
+    float: center;
+}
+#hint
+{
+    background-color: white;
+    width: 200px;
+    height: 585px;
+    float: left;
+    text-align: center;
+    font-size: 30px;
+    color: black;
+    border: 1px solid black;
+}
+#letters
+{
+    background-color: white;
+    width: 600px;
+    height: 600px;
+    /* border: 1px solid black; */
+    float: right;
+}
+.individual
+{
+    width: 40px;
+    height: 40px;
+    float: left;/*Use "left" to show word from left->right, up->down
+                Use "right" to show word from left->right,
+                right->left, up->down, down->up*/
+    border: 1px solid black;
+    border-radius: 2px;
+    font-size: 30px;
+    text-align: center;
+    margin: 3px;
+}
+h1
+{
+    height: 30px;
+    width: 810px;
+    background-color: white;
+    color: red;
+    font-size: 30px;
+    text-align: center;
+}
+.rightWordInHint
+{
+    text-decoration: line-through;
+}
+.colorSelect
+{
+    background: yellow;
+}
+.correctWord
+{
+    background: silver;
+}
