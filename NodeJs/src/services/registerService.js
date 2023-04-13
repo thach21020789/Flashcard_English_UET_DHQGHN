@@ -18,7 +18,7 @@ let createNewUser = (data) => {
 
             //create a new account
             DBConnection.query(
-                ' INSERT INTO users set ? ', userItem,
+                ' INSERT INTO account set ? ', userItem,
                 function(err, rows) {
                     if (err) {
                         reject(false)
@@ -34,7 +34,7 @@ let checkExistEmail = (email) => {
     return new Promise( (resolve, reject) => {
         try {
             DBConnection.query(
-                ' SELECT * FROM `users` WHERE `email` = ?  ', email,
+                ' SELECT * FROM `account` WHERE `email` = ?  ', email,
                 function(err, rows) {
                     if (err) {
                         reject(err)
