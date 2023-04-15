@@ -34,6 +34,9 @@ function App() {
               <Route path="/Test" exact>
                 <Test></Test>
               </Route>
+              <Route path="/login" exact>
+                <Login></Login>
+              </Route>
             </Switch>
           </header>
         </div>

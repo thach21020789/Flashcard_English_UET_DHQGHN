@@ -25,7 +25,10 @@ let handleLogin = async (req, res) => {
         return res.redirect("/");
     } catch (err) {
         req.flash("errors", err);
-        return res.redirect("/login");
+
+        return res.status(500).json(
+            errorsArr
+        );
     }
 };
 

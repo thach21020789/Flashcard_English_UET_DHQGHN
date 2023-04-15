@@ -1,0 +1,12 @@
+POST http://localhost:3001/login
+Content-Type: application/json
+
+
+{
+    "email" : "cao.hl.thang@gmail.com",
+    "password" : "ah8ay9ebnw"
+}
+
+
+###
+GET http://localhost:3001/protected

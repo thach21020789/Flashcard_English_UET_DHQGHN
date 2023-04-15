@@ -1,13 +1,13 @@
 {
-  "name": "tutorial-youtube",
+  "name": "nodejs-back-end",
   "version": "1.0.0",
   "description": "Building a login system with NodeJS",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec babel-node src/server.js"
+    "start": "nodemon --inspect --exec babel-node src/server.js"
   },
-  "author": "hary pham",
+  "author": "thang pro",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
