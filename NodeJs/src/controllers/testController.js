@@ -1,5 +1,6 @@
 import connection from "../configs/DBConnection"
 
+
 let getTestPage = (req, res) => {
     
     connection.query("SELECT * FROM users", function (error, rows) {
