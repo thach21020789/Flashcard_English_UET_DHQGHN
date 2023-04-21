@@ -1,69 +1,102 @@
-import React from "react";
-import './MiniGame.scss';
+/* eslint-disable react/jsx-no-undef */
+import React, { useEffect } from "react";
+import './GameStyle/MiniGame.scss';
+import Board from './Board';
+import Keyboard from "./Keyboard";
+import { boardDefault, generateWordSet } from "./Word";
+import { createContext, useState } from "react";
+import GameOver from "./GameOver";
 
-class MiniGame extends React.Component{
-    componentDidMount() {
-        const script = document.createElement("script");
-        script.src = "https://code.jquery.com/jquery-3.6.0.min.js";
-        script.async = true;
-        document.body.appendChild(script);
-        // this.setIndividualAttribute(7, "A", "");  
-      }
+export const AppContext = createContext();
 
-    render(){
-        var myWords = ["EGG", "MILK", "BUTTER", "JAM", "OATS",
-        "SUGAR", "BREAD", "RUSK"];
-        var tempWord = [];
-        var selectedWord = '';
-        
+function MiniGame() {
+    const [board, setBoard] = useState(boardDefault);
+    const [currAttempt, setCurrAttempt] = useState({attempt: 0, letterPos: 0})
 
+    const [wordSet, setWordSet] = useState(new Set());
+    const [disabledLetters, setDisabledLetters] = useState([]);
+    const [correctWord, setCorrectWord] = useState("");
+    const [gameOver, setGameOver] = useState({
+        gameOver: false,
+        guessedWord: false,
+    });
 
-        const rows = 12;
-        const columns = 12;
-        const individualElements = [];
+    // const correctWord = "RIGHT";
+    useEffect(() => {
+        generateWordSet().then((words) => {
+            setWordSet(words.wordSet);
+            setCorrectWord(words.todayWord);
+        });
+    }, []);
 
-        for (let i = 1; i <= rows; i++) {
-            for (let j = 1; j <= columns; j++) {
-              individualElements.push(
-                <div className="individual" data-row={i} data-column={j} data={"A"} key={`${i}-${j}-${"A"}`} />
-              );
-            }
+    const onSelectLetter = (keyVal) => {
+        if (currAttempt.letterPos > 4) {
+            return;
+        }
+        const newBoard = [...board];
+        newBoard[currAttempt.attempt][currAttempt.letterPos] = keyVal;
+        setBoard(newBoard);
+        setCurrAttempt({...currAttempt, letterPos: currAttempt.letterPos + 1});
+    };
+    const onEnter = () => {
+        if (currAttempt.letterPos !== 5) return;
+        let currWord = "";
+        for (let i = 0; i<5; i++) {
+            currWord += board[currAttempt.attempt][i];
+        }
+        // if (wordSet.has(currWord.toLowerCase())) {
+        //     setCurrAttempt({attempt: currAttempt.attempt + 1, letterPos: 0});
+        // } else {
+        //     // alert("Word Not Found!");
+        // }
+        setCurrAttempt({attempt: currAttempt.attempt + 1, letterPos: 0});
+        if (currWord === correctWord) {
+            setGameOver({ gameOver: true, guessedWord: true});
         }
 
-        var positions = ["row", "column"];
-        var nextLetter = 0;
-        var newStart = 0;
-
-        for (let i = 0; i<myWords.length; i++) {
-            const orientation = positions[Math.floor(Math.random() * positions.length)];
-            // console.log(orientation);
-            const start = Math.floor(Math.random() * individualElements.length);
-            // const individualElement = this.individualElements[start].querySelector('.individual');
-            //const rowData = this.individualElements[start].querySelector('.individual').dataset.row;
-                        // const myColumn = parseInt(individualElements[start].querySelector.dataset.row);
-
+        if (currAttempt.attempt === 5) {
+            setGameOver({ gameOver: true, guessedWord: false});
         }
-        return(
-            <>
-                <div>
-                    <h1>WORD SEARCH GAME</h1>
-                    <div id = "container">
-                        <div id = "hint">
-                            {myWords.map((word, index) => (
-                                <p key={index}>{word}</p>
-                            ))}
-                        </div>
 
-                        <div id = "letters" ref={this.individualElementsRef}>
-                            {individualElements}
-                        </div>
-                    </div>
+    };
+    const onDelete = () => {
+        if (currAttempt.letterPos === 0) return;
+        const newBoard = [...board];
+        newBoard[currAttempt.attempt][currAttempt.letterPos - 1] = "";
+        setBoard(newBoard);
+        setCurrAttempt({...currAttempt, letterPos: currAttempt.letterPos - 1});
+    };
+
+    return(
+        <div className="MiniGames">
+            <nav>
+                <h1>Wordle</h1>
+            </nav>
+
+            <AppContext.Provider value={{
+                board,
+                setBoard,
+                currAttempt,
+                setCurrAttempt,
+                onSelectLetter,
+                onDelete,
+                onEnter,
+                correctWord,
+                disabledLetters,
+                setDisabledLetters,
+                gameOver,
+                setGameOver,
+                }}>
+                <div className="game">
+                    <Board />
+                    {gameOver.gameOver ? <GameOver /> : <Keyboard />}
                 </div>
-            </>        
-        )
-    }
+            </AppContext.Provider>
+            
+        </div>
+
+    )
+    
 }
 
 export default MiniGame;
-
-
