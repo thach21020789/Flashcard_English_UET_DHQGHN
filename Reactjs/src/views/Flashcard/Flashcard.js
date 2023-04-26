@@ -1,68 +1,114 @@
-
+// import { toast } from 'react-toastify';
 import React from 'react';
 import ReactCardFlip from 'react-card-flip';
 import './Flashcard.scss';
 import axios from 'axios';
-
+import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 class Flashcard extends React.Component {
 
-    handleClick = () => {
+    constructor(props) {
+        super(props);
+        this.state = {
+            indexWord: 0,
+            hovered: false,
+            vietNamese: "",
+            words: [
+                {}
+            ]
+        }
+        this.handleMouseOver = this.handleMouseOver.bind(this);
+        this.handleMouseOut = this.handleMouseOut.bind(this);
+        this.handleClickCard = this.handleClickCard.bind(this);
+        this.handleToPlaySound = this.handleToPlaySound.bind(this);
+        this.handleNextWord = this.handleNextWord.bind(this);
+    }
+
+    async componentDidMount() {
+        let dataFromTopicList = this.props.location.state;
+        let level = dataFromTopicList.level;
+        let topic = dataFromTopicList.topic;
+        // console.log(">>>check level and topic : ", topic + " " + level );
+        // console.log("check data get : ", this.props);
+        let res = await axios.get(`http://localhost:3001/${topic}/${level}`);
+        // let res = await axios.get(`http://localhost:3001/vehicle/easy`);
+        // console.log("check data : ", res);
+        this.setState({
+            words: res.data
+        })
+
+        console.log(this.state.words);
+    }
+
+
+    handleMouseOver = () => {
+        this.setState({ hovered: true });
+    };
+
+    handleMouseOut = () => {
+        this.setState({ hovered: false });
+    };
+
+    handleClickCard = () => {
         this.setState({
             isFlipped: !this.state.isFlipped
         })
     }
 
-    state = {
-        i: 0,
-        words: [
-            { word: "Hello", definition: "Used as a greeting or to begin a telephone conversation." },
-            { word: "Goodbye", definition: "Used to express good wishes when parting or at the end of a conversation." },
-            { word: "Yes", definition: "Used to give an affirmative response." },
-            { word: "No", definition: "Used to give a negative response." },
-            { word: "Please", definition: "Used to ask for something in a polite way." },
-            { word: "Thank you", definition: "Used to express gratitude or appreciation." },
-            { word: "Sorry", definition: "Used to apologize or express regret." },
-            { word: "Excuse me", definition: "Used to politely ask someone to move or to get someone's attention." }
-        ]
+    handleToPlaySound = () => {
+        const { indexWord, words } = this.state;
+        const utterance = new SpeechSynthesisUtterance();
+        utterance.text = words[indexWord].word;
+        window.speechSynthesis.speak(utterance);
     }
-
-    async componentDidMount() {
-        let res = await axios.get("http://localhost:3000/test");
-        console.log("testttttttttt:", res)
-    }
-
     handleNextWord = () => {
-        let tmp = this.state.i;
-        if (this.state.i < this.state.words.length - 1) {
+        // toast.success("next word");
+        let tmp = this.state.indexWord;
+        if (this.state.indexWord < this.state.words.length - 1) {
             this.setState({
-                i: tmp + 1
+                indexWord: tmp + 1
             })
         } else {
-            this.setState({
-                i: this.state.words.length - 1
-            })
+            // this.setState({
+            //     indexWord: this.state.words.length - 1
+
+            // })
+            this.props.history.push("/Test/easy");
         }
     }
 
+    soundIcon = (
+        <div className='volum' onClick={() => this.handleToPlaySound()}>
+            <img src="https://ngoaingu24h.vn/resources/images/new/sound.svg"></img>
+        </div>
+    );
+
     render() {
-        let { i, words } = this.state;
-        let res = axios.get("http://localhost:3000/test");
-        console.log("testttttttttt:", res)
-        console.log(i);
-        let wordEnglish = words[i].word;
-        let definitions = words[i].definition
+        let { indexWord, words, vietNamese } = this.state;
+        // console.log(">>check index : ", indexWord);
+        console.log(">>check word: ", words);
+        let wordEnglish = words[indexWord].word;
+        let definitions = words[indexWord].definition;
+        let vietNameses = words[indexWord].vietnamese;
+        
         return (
             <>
                 <div className='card-container'>
                     <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
-                        <div onClick={this.handleClick} className="card">
+                        <div onClick={this.handleClickCard} className="card">
+                            {this.soundIcon}
                             <div className='content-front'>{wordEnglish} </div>
                         </div>
 
-                        <div onClick={this.handleClick} className="card">
+                        <div onClick={this.handleClickCard} className="card">
+                            {this.soundIcon}
+                            <div className='vietNamese' style={{ color: "black" }}>{vietNameses}</div>
                             <div className='content-front'>{definitions}</div>
                             <div>
-                                <button type='button' onClick={() => this.handleNextWord()}>next word</button>
+                                <button type='button' className='buttonNextword' onClick={() => this.handleNextWord()}
+                                    style={{ backgroundColor: this.state.hovered ? 'grey' : 'bisque', color: 'white' }}
+                                    onMouseOver={() => this.handleMouseOver()}
+                                    onMouseOut={() => this.handleMouseOut()}
+                                >next word</button>
                             </div>
                         </div>
                     </ReactCardFlip>
@@ -72,4 +118,4 @@ class Flashcard extends React.Component {
     }
 }
 
-export default Flashcard;
+export default withRouter(Flashcard);

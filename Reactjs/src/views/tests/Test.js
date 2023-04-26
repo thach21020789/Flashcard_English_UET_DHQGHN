@@ -1,19 +1,22 @@
 import React from "react";
-import ReactCardFlip from "react-card-flip";
 import "./Test.scss";
+import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 class Test extends React.Component {
-
+    handleClickEasyWord = () =>{
+        this.props.history.push("/Test/easy");
+    }
     render() {
         return (
             // <div> Hello</div>
             <>
                 <h1>Please chose</h1>
-                <ol>
-                    <li style={{accent: "#0D6EFD"}} className ="easy-word" >
+                <ol className="topic-container">
+                    <li style={{accent: "#0D6EFD"}} className ="easy-word" onClick={() => this.handleClickEasyWord()}>
                         <div class="icon"><i class="fa-brands fa-codepen"></i></div>
                         <div class="title">Easy</div>
                         <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, impedit?</div>
                     </li>
+
                     <li  style={{accent: "#0D6EFD"}} className ="normal-word">
                         <div class="icon"><i class="fa-brands fa-html5"></i></div>
                         <div class="title">Normal</div>
@@ -31,4 +34,4 @@ class Test extends React.Component {
 
 }
 
-export default Test;
+export default withRouter(Test);

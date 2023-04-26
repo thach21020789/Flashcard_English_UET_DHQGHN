@@ -1,13 +1,13 @@
 {
-  "name": "tutorial-youtube",
+  "name": "nodejs-back-end",
   "version": "1.0.0",
   "description": "Building a login system with NodeJS",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec babel-node src/server.js"
+    "start": "nodemon --inspect --exec babel-node src/server.js"
   },
-  "author": "hary pham",
+  "author": "thang pro",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -22,7 +22,8 @@
     "express-validator": "^6.5.0",
     "mysql2": "^2.1.0",
     "passport": "^0.4.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "react-speech": "^1.0.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.3",

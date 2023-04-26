@@ -1,33 +1,55 @@
 .card-container {
-    border: 10px;
+
+    border         : 50px solid white;
+    display        : flex;
+    justify-content: center;
 
     .card {
-        background-color: blue;
-        border          : 1px solid #ccc;
+        background-color: white;
+        border          : 3px solid #ccc;
         padding         : 10px;
-        width           : 300px;
+        width           : 350px;
         height          : 500px;
         display         : flex;
         justify-content : center;
         align-items     : center;
         text-align      : center;
         font-size       : 24px;
-        border-radius   : 10px solid grey;
-        border          : 1px;
 
-        .progressHtml {
-            height         : 25px;
-            background     : #6ec148;
-            color          : #fff;
-            width          : 70px;
-            border-radius  : 5px;
-            display        : absolute;
-            align-items    : center;
-            justify-content: center;
-            margin-left    : auto;
-            margin-top     : 5px;
-            margin-right   : 5px;
-            bottom         : 0;
+        .buttonNextword {
+            position        : absolute;
+            bottom          : 0;
+            width           : 370px;
+            background-color: bisque;
+            right           : 3px;
+        }
+
+        .buttonNextword button:hover {
+            background-color: aqua;
+        }
+
+        .volum  {
+            position: absolute;
+            top     : 0px;
+            left    : 0px;
+        }
+        
+        .volum div:hover{
+            background-image: blue;
+        }
+        
+        .content-front {
+            color      : black;
+            font-size  : 18px;
+            font-weight: 600;
+        }
+
+        .vietNamese {
+            font-size  : 20px;
+            font-weight: 600;
+            color      : black;
+            position   : absolute;
+            top        : 150px;
         }
     }
 }
