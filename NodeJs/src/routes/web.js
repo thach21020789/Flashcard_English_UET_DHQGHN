@@ -31,17 +31,8 @@ let initWebRoutes = (app) => {
 
     router.get("/:category", flashcardController.getVocabByC);
     router.get("/:category/:difficulty", flashcardController.getVocabByCD);
-
-    app.get('/protected', (req, res) => {
-        if (req.isAuthenticated()) {
-          // The user is authenticated, so we can proceed with the protected route
-          res.send('This is a protected route');
-        } else {
-          // The user is not authenticated, so we redirect to the login page
-          res.send('This is not a protected route');;
-        }
-      });
-
+    router.get("/search/:word", flashcardController.getVocab);
+    
     router.get("/test", testController.getTestPage);
     return app.use("/", router);
 };

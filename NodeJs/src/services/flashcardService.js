@@ -38,6 +38,25 @@ let getVocabByCategoryAndDifficulty = (category, difficulty) => {
     });
 };
 
+let getVocabService = (word) => {
+    return new Promise( (resolve, reject) => {
+        try {
+            DBconnection.query(
+                "SELECT * FROM entries WHERE word = ? GROUP BY word", [word],
+                function(err, rows) {
+                    if (err) {
+                        reject(err)
+                    } else {
+                        resolve (rows)
+                    }
+                }
+            );
+        } catch (err) {
+            reject(err);
+        }
+    });
+};
+
 module.exports = {
-    getVocabByCategory, getVocabByCategoryAndDifficulty 
+    getVocabByCategory, getVocabByCategoryAndDifficulty, getVocabService
 }

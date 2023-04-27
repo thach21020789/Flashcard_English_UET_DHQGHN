@@ -3,8 +3,12 @@ import React from "react";
 import './Login.scss';
 import { useState } from 'react';
 import { useHistory, withRouter } from 'react-router-dom';
+import axios from "axios";
 class Login extends React.Component {
     handleLogin = () =>{
+        console.log("testing")
+        let res = axios.get(`http://localhost:3000/search/tree`)
+        console.log(res)
         this.props.history.push('/Home');
     }
     

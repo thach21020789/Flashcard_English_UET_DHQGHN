@@ -13,9 +13,19 @@ import cors from "cors";
 
 let app = express();
 
-// test
-app.use(cors());
+app.use(
+    cors({
+      origin: "http://localhost:3000", // <-- location of the react app were connecting to
+      credentials: true,
+    })
+  );
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 //use cookie parser
 app.use(cookieParser('secret'));
@@ -24,7 +34,7 @@ app.use(cookieParser('secret'));
 app.use(session({
     secret: 'secret',
     resave: true,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 // 86400000 1 day
     }
