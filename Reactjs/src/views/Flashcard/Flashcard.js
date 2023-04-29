@@ -27,7 +27,7 @@ class Flashcard extends React.Component {
         let dataFromTopicList = this.props.location.state;
         let level = dataFromTopicList.level;
         let topic = dataFromTopicList.topic;
-        // console.log(">>>check level and topic : ", topic + " " + level );
+        // console.log(">>>check level and topic : ", topic + " " + level);
         // console.log("check data get : ", this.props);
         let res = await axios.get(`http://localhost:3001/${topic}/${level}`);
         // let res = await axios.get(`http://localhost:3001/vehicle/easy`);
@@ -89,7 +89,7 @@ class Flashcard extends React.Component {
         let wordEnglish = words[indexWord].word;
         let definitions = words[indexWord].definition;
         let vietNameses = words[indexWord].vietnamese;
-        
+
         return (
             <>
                 <div className='card-container'>
