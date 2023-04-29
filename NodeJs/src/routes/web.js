@@ -29,11 +29,11 @@ let initWebRoutes = (app) => {
 
     router.post("/logout", loginController.postLogOut);
 
-    router.get("/:category", flashcardController.getVocabByC);
-    router.get("/:category/:difficulty", flashcardController.getVocabByCD);
+    router.get("/group/:category", flashcardController.getVocabByC);
+    router.get("/group/:category/:difficulty", flashcardController.getVocabByCD);
     router.get("/search/:word", flashcardController.getVocab);
     
-    router.get("/test", testController.getTestPage);
+    //router.get("/test", testController.getTestPage);
     return app.use("/", router);
 };
 module.exports = initWebRoutes;
