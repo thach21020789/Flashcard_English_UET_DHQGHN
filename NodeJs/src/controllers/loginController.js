@@ -1,6 +1,8 @@
 import passport from "passport";
 import loginService from "../services/loginService"
 import bcrypt from "bcryptjs";
+import transporter from "../configs/mailConfig"
+import crypto from 'crypto'
 
 let getLoginPage = (req, res) => {
     return res.render("login.ejs");
@@ -61,24 +63,27 @@ let handleChangePassword = async (req, res) => {
 }
 
 let handleForgotPassword = async (req, res) => {
-    const { email } = req.body.email;
-
+    const email = req.body.email;
+    console.log(email)
     try {
         // Generate a random token
-        const token = await bcrypt.genSalt(16);
+        const token = crypto.randomBytes(32).toString('hex');
+        console.log(token)
 
+        const hashedToken = crypto.createHash("sha256").update(token).digest('hex')
+        console.log()
         // Store the token in the database
-        await loginService.storeToken(email, token)
+        await loginService.storeToken(email, hashedToken)
 
         // Send an email to the user with a link to reset their password
         const mailOptions = {
-            from: 'yourgmailusername@gmail.com',
+            from: 'Flash card <flashcardbruhbruh@bruh.com>',
             to: email,
             subject: 'Reset your password',
-            html: `<p>Click <a href="http://localhost:3000/reset-password/${token}">here</a> to reset your password.</p>`
+            text: `http://localhost:3001/reset-password/${token}`
         };
 
-        console.log("reset password url: ", `http://localhost:3000/reset-password/${token}`)
+        console.log("reset password url: ", `http://localhost:3001/reset-password/${token}`)
 
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
@@ -99,8 +104,10 @@ let handleResetPassword = async (req, res) => {
     const token = req.params.token;
 
     try {
-        // Retrieve the token from the database
-        const user = await loginService.findUserByToken(token);
+        const hashedToken = crypto.createHash("sha256").update(token).digest('hex')
+        console.log("hashed token: ", hashedToken)
+ 
+        const user = await loginService.findUserByToken(hashedToken);
         console.log(user)
 
         // Compare the token from the request with the stored token

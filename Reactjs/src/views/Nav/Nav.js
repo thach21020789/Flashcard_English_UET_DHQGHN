@@ -1,21 +1,43 @@
+
 import React from "react";
+import { withRouter, Link } from "react-router";
 import './Nav.scss';
-import {
-    NavLink
-} from "react-router-dom";
-
+import { MenuItem } from "./MenuItems";
 class Nav extends React.Component {
-
+    state = {clicked: false};
+    handleClick = () => {
+        this.setState({ clicked: !this.state.clicked})
+    }
+    tempUrl="";
     render() {
+
         return (
-            <div class="topnav">
-                <NavLink to="/Home" activeClassName="active" exact={true}>Home</NavLink>
-                <NavLink to="/Flashcard" activeClassName="active" exact={true}>Flashcard</NavLink>
-                <NavLink to="/MiniGame" activeClassName="active" exact={true}>MiniGame</NavLink>
-                <NavLink to="/Search" activeClassName="active" exact={true}>Search</NavLink>
-            </div>
+            <>
+            <nav className="NavbarItems">
+                <a href="/Home">
+                    <h1 className="navbar-logo"> StuEng </h1>
+                </a>
+                <div className="menu-icons" onClick={this.handleClick}>
+                    <i className={this.state.clicked ? "fas fa-times" : "fas fa-bars"}></i>
+                </div>
+                <ul className={this.state.clicked ? "nav-menu active" : "nav-menu"}>
+                    {MenuItem.map((item, index) => {
+                        return (
+                            <li key={index}>
+                                <a className={item.cName} href={item.url}>
+                                    <i className={item.icon}></i>{item.title}
+                                </a>
+                            </li>
+                        );
+                    })}
+                    <button>Sign Up</button>
+                </ul>
+            </nav>
+            
+            </>
         )
     }
 }
 
+// export default withRouter(Home);
 export default Nav;

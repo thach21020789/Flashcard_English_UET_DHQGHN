@@ -57,3 +57,13 @@ Content-Type: application/json
     "email" : "cao.hl.thang@gmail.com"
 }
 
+
+###
+POST http://localhost:3001/reset-password/$2a$16$ZGW9Vrs//W/b7ZnAYgUI1.
+Content-Type: application/json
+
+
+{
+    "password" : "123"
+}
+

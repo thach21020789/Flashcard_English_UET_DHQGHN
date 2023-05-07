@@ -68,10 +68,11 @@ let storeToken = (email, token) => {
 let findUserByToken = (token) => {
     return new Promise((resolve, reject) => {
         try {
-            connection.query("SELECT * from account where id = ?", token, function (error, rows) {
+            connection.query("SELECT * from account where password_reset_token = ?", token, function (error, rows) {
+                console.log(rows)
                 if (error) reject(error);
                 let user = rows[0];
-                if (user.length == 0) {
+                if (!user) {
                     reject("Invalid token")
                 } else resolve(user);
             });

@@ -1,14 +1,26 @@
-import React from "react";
-import { withRouter } from "react-router";
-class Home extends React.Component {
-
-
-    render() {
-        return (
-            <div>Home</div>
-        )
-    }
+import React from 'react'
+import Hero from './Hero'
+import Introduction from "./Introduction";
+import Companion from './Companion';
+import Footer from './Footer';
+function Home() {
+  return (
+    <>
+      <Hero 
+      cName="hero"
+      heroImg="https://images.unsplash.com/photo-1498435999018-6803de1f1c1f?ixlib=
+      rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80"
+      title="Start Learning English"
+      text="Now or Never"
+      buttonText="Research"
+      url="/Home"
+      btnClass="show"
+      />
+      <Introduction/>
+      <Companion/>
+      <Footer />
+    </>
+    )
 }
 
-// export default withRouter(Home);
-export default (Home);
+export default Home
