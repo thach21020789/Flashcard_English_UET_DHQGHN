@@ -9,4 +9,51 @@ Content-Type: application/json
 
 
 ###
-GET http://localhost:3001/vehicle
+POST http://localhost:3001/change-password
+Content-Type: application/json
+
+
+{
+    "email" : "cao.hl.thang@gmail.com",
+    "oldPassword" : "ah8ay9ebnww",
+    "password" : "ah8ay9ebnw"
+}
+
+###
+GET http://localhost:3001/search/vehicle
+
+
+###
+GET http://localhost:3001/login
+
+
+###
+POST http://localhost:3001/register
+Content-Type: application/json
+
+
+{   
+    "fullName" : "gaugau",
+    "email" : "baquekhatnuoc@gmail.com",
+    "password" : "123", 
+    "passwordConfirmation" : "123"
+}
+
+
+
+###
+POST http://localhost:3001/logout
+
+
+###
+GET http://localhost:3001/user
+
+###
+POST http://localhost:3001/forgot-password
+Content-Type: application/json
+
+
+{
+    "email" : "cao.hl.thang@gmail.com"
+}
+

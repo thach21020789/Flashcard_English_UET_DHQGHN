@@ -8,6 +8,7 @@ import MiniGame from './MiniGames/MiniGame';
 import TopicList from './tests/TopicList';
 import Test from './tests/Test';
 import Search from './Search/Search';
+import Login from './Admins/Login';
 import {
   BrowserRouter,
   Switch,
@@ -42,6 +43,9 @@ function App() {
               </Route>
               <Route path = "/Search" exact>
                   <Search></Search>
+              </Route>
+              <Route path = "/login" exact>
+                  <Login></Login>
               </Route>
             </Switch>
           </header>

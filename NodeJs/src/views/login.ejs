@@ -1,50 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login page</title>
+    <title>Login Page</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Bootstrap 4 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/login.js"></script>
 </head>
 <body>
 <div class="container">
     <div class="container">
-        <div class="row mt-5">
-            <div class="col-7 login-left">
-            </div>
-            <div class="col-5 mt-2">
-                <div>
-                    <% if(errors != "") { %>
-                        <% errors.forEach((item) => { %>
-                            <div class="alert alert-danger">
-                                <%- item %>
-                            </div>
-                        <% }); %>
-                    <% } %>
-                </div>
-                <form method="POST" action="/login">
-                    <div class="form-group">
-                        <label for="email">Email address:</label>
-                        <input type="email" class="form-control" id="email" name="email"  placeholder="Enter email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password:</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Log in</button>
+        <div class="row mt-5 justify-content-center">
+            <div class="col-6 p-4">
+                <form>
+                    <fieldset>
+                        <legend>Login form</legend>
+                        <div class="form-group">
+                            <label for="email">Email address:</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" class="form-control" id="password" placeholder="Password" required>
+                        </div>
+                        <button type="button" id="loginBtn" class="btn btn-primary">Login</button>
+                        <div class="mt-2">If you haven't had an account yet, <a href="/register">create a new one</a></div>
+                    </fieldset>
                 </form>
-
-                <hr>
-                <div>
-                    If you haven't had an account. <a href="/register">Create a new account</a>.
-                </div>
-                <div>
-                    Return to <a href="/">Home Page</a>
-                </div>
-                
+            </div>
         </div>
     </div>
 </div>

@@ -23,7 +23,7 @@ let getVocabByCategoryAndDifficulty = (category, difficulty) => {
     return new Promise( (resolve, reject) => {
         try {
             DBconnection.query(
-                'SELECT * FROM `entries` e INNER JOIN `category` c ON e.category_id = c.category_id WHERE c.name = ? AND difficulty = ? GROUP BY word', [category, difficulty],
+                'SELECT *  FROM `entries` e INNER JOIN `category` c ON e.category_id = c.category_id WHERE c.name = ? AND difficulty = ? GROUP BY word', [category, difficulty],
                 function(err, rows) {
                     if (err) {
                         reject(err)
@@ -42,7 +42,7 @@ let getVocabService = (word) => {
     return new Promise( (resolve, reject) => {
         try {
             DBconnection.query(
-                "SELECT * FROM entries WHERE word = ? GROUP BY word", [word],
+                "SELECT *, (SELECT IPA FROM phonemes WHERE word = ?) AS IPA FROM entries WHERE word = ? GROUP BY word;", [word, word],
                 function(err, rows) {
                     if (err) {
                         reject(err)

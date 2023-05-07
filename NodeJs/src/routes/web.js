@@ -14,26 +14,28 @@ initPassportLocal();
 let router = express.Router();
 
 let initWebRoutes = (app) => {
-    router.get("/", loginController.checkLoggedIn, homePageController.handleHelloWorld);
+  router.get("/", loginController.checkLoggedIn, homePageController.getHomePage);
+  router.post("/logout", loginController.postLogOut);
 
-    router.get("/login", loginController.checkLoggedOut, loginController.getPageLogin);
-    router.post("/login", passport.authenticate("local", {
-        successRedirect: "/",
-        failureRedirect: "/login",
-        successFlash: true,
-        failureFlash: true
-    }));
+  router.get("/register", registerController.getRegisterPage);
+  router.post("/register", registerController.createNewUser);
 
-    router.get("/register", registerController.getPageRegister);
-    router.post("/register", auth.validateRegister, registerController.createNewUser);
+  router.get("/login", loginController.checkLoggedOut, loginController.getLoginPage);
+  router.post("/login", loginController.handleLogin);
 
-    router.post("/logout", loginController.postLogOut);
+  router.post("/change-password", loginController.checkLoggedIn, loginController.handleChangePassword)
+  router.post("/forgot-password", loginController.handleForgotPassword)
+  router.post("/reset-password/:token", loginController.handleResetPassword)
 
-    router.get("/group/:category", flashcardController.getVocabByC);
-    router.get("/group/:category/:difficulty", flashcardController.getVocabByCD);
-    router.get("/search/:word", flashcardController.getVocab);
-    
-    //router.get("/test", testController.getTestPage);
-    return app.use("/", router);
+  router.get("/group/:category", flashcardController.getVocabByC);
+  router.get("/group/:category/:difficulty", flashcardController.getVocabByCD);
+  router.get("/search/:word", flashcardController.getVocab);
+
+
+  app.get("/user", (req, res) => {
+    res.send(req.user); // The req.user stores the entire user that has been authenticated inside of it.
+  });
+
+  return app.use("/", router);
 };
 module.exports = initWebRoutes;

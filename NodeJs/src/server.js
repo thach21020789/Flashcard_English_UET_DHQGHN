@@ -7,11 +7,21 @@ import cookieParser from 'cookie-parser';
 import session from "express-session";
 import connectFlash from "connect-flash";
 import passport from "passport";
-
-// test
+import nodemailer from "nodemailer";
 import cors from "cors";
 
 let app = express();
+
+// Set up Nodemailer
+const transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false,
+  auth: {
+    user: 'yourgmailusername@gmail.com',
+    pass: 'yourgmailpassword'
+  }
+});
 
 app.use(
     cors({
@@ -19,13 +29,6 @@ app.use(
       credentials: true,
     })
   );
-
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
 
 //use cookie parser
 app.use(cookieParser('secret'));
