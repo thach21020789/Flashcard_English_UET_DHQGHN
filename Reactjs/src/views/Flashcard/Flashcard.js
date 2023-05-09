@@ -30,7 +30,6 @@ class Flashcard extends React.Component {
         let level = dataFromTopicList.level;
         let topic = dataFromTopicList.topic;
 
-        // check login
         let checkAuth = await axios.get(
             `http://localhost:3001/user`,
             { withCredentials: true }
