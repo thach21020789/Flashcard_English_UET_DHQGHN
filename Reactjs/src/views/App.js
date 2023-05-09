@@ -8,59 +8,73 @@ import MiniGame from './MiniGames/MiniGame';
 import TopicList from './tests/TopicList';
 import Test from './tests/Test';
 import Search from './Search/Search';
-import Login from './Admins/Login';
+import Login from './Admins/Login/Login';
+import Register from './Admins/Register/Register';
+import ForgotPassword from './Admins/ForgotPassword/ForgotPassword';
+import ResetPassword from './Admins/ForgotPassword/ResetPassword';
+
 import {
   BrowserRouter,
   Switch,
   Route,
   Link
 } from "react-router-dom";
-import MyComponent from './Mycomponent';
 
 function App() {
   return (
     <>
-      {/* <MyComponent></MyComponent> */}
+      {}
       <BrowserRouter>
-        <Nav></Nav>
-        <div className="App">
-          <header className="App-header">
-            <Switch>
-              <Route path="/Home" exact>
-                <Home></Home>
-              </Route>
-              <Route path="/MiniGame" exact>
-                <MiniGame></MiniGame>
-              </Route>
-              <Route path="/Flashcard" exact>
-                <Test></Test>
-              </Route>
-              <Route path="/Test/easy" exact>
-                <TopicList></TopicList>
-              </Route>
-              <Route path = "/mainFlashcard" exact>
-                <Flashcard></Flashcard>
-              </Route>
-              <Route path = "/Search" exact>
-                  <Search></Search>
-              </Route>
-              <Route path = "/login" exact>
-                  <Login></Login>
-              </Route>
-            </Switch>
-          </header>
-          {/* <ToastContainer
-            position="top-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          /> */}
-        </div>
+        <Switch>
+          <Route path="/login" exact>
+            <Login></Login>
+          </Route>
+
+          <Route path="/register" exact>
+            <Register></Register>
+          </Route>
+
+          <Route path="/forgot-password" exact>
+            <ForgotPassword></ForgotPassword>
+          </Route>
+
+          <Route path="/reset-password/:token" exact>
+            <ResetPassword></ResetPassword>
+          </Route>
+
+          <Route>
+
+            <Nav></Nav>
+            <div className="App">
+              <header className="App-header">
+                <Switch>
+                  <Route path="/Home" exact>
+                    <Home></Home>
+                  </Route>
+                  <Route path="/MiniGame" exact>
+                    <MiniGame></MiniGame>
+                  </Route>
+                  <Route path="/Flashcard" exact>
+                    <Test></Test>
+                  </Route>
+                  <Route path="/Test/easy" exact>
+                    <TopicList></TopicList>
+                  </Route>
+                  <Route path="/mainFlashcard" exact>
+                    <Flashcard></Flashcard>
+                  </Route>
+                  <Route path="/Search" exact>
+                    <Search></Search>
+                  </Route>
+
+                </Switch>
+              </header>
+
+
+              {}
+            </div>
+          </Route>
+        </Switch>
       </BrowserRouter>
     </>
   );

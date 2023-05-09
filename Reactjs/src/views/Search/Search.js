@@ -1,58 +1,39 @@
-import React from "react";
-import "./Search.scss";
-import axios from "axios";
-import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
+import React, { useState } from 'react';
+import axios from 'axios';
+import './Search.scss';
 
-class Search extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            searchTerm: '',
-            searchResults: {word: "Hello world", vietnamese: "Xin chao", definenation:"to make friend"}
-          };
+const Search = () => {
+    const [word, setWord] = useState('');
+    const [result, setResult] = useState('');
+    const [error, setError] = useState('');
 
-        this.handleSearch = this.handleSearch.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-
-       
-    }
-
-    // Phương thức xử lý tìm kiếm
-    async handleSearch(event) {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        const { searchTerm } = this.state;
-        console.log("Search")
+        console.log("check result before get: ", result)
+        try {
+            const result = await axios.get(`http://localhost:3001/search/${word}`,
+             { withCredentials: true });
 
-        // Gửi yêu cầu tới API để truy xuất cơ sở dữ liệu
-       await axios.get(`http://localhost:3001/search/${searchTerm}`) //localhost:3001/category/search/${searchTerm}
-          .then(response => {
-            console.log(response.data)
-            this.setState({ searchResults: response.data });
-          })
-          .catch(error => {
-            console.error(error);
-          });
-      }
+            setResult(result.data)
+            
+        } catch (error) {
+            console.log(error.data)
+            setError(error.data.error);
+        }
+        console.log("result: ", result)
+    };
 
-    // Phương thức xử lý khi giá trị ô tìm kiếm thay đổi
-    handleChange(event) {
-        this.setState({ searchTerm: event.target.value });
-    }
-    render() {
-        const { searchTerm,searchResults } = this.state;
-        return (
-            <>
-                <form onSubmit={this.handleSearch}>
-                    <input type="text" value={searchTerm} onChange={this.handleChange} />
-                    <button type="submit">Search</button>
-                </form>
-                <ul className="result-search-box">
-                    {/* <li>{searchResults.vietnamese}</li>
-                    <li>{searchResults.definenation}</li> */}
-                </ul>
-            </>
-        );
-    }
-}
+    return (
+            <form className='search-form' onSubmit={handleSubmit}>
+                <input type="text" id="word" required value={word} onChange={(e) => setWord(e.target.value)} />
+                <button type="submit">Search</button>
+                {result && result.word && <div className="result-word">{result.word}</div>}
+                {result && result.IPA && <div className="result-IPA">{result.IPA}</div>}
+                {result && result.wordtype && <div className="result-wordtype">{result.wordtype}</div>}
+                {result && result.definition && <div className="result-definition">{result.definition}</div>}
+                {result && result.vietnamese && <div className="result-vietnamese">{result.vietnamese}</div>}
+            </form>
+    );
+};
 
-export default withRouter(Search);
+export default Search;

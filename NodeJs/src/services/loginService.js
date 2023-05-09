@@ -7,6 +7,9 @@ let findUserByEmail = (email) => {
             connection.query("SELECT * from account where email = ?", email, function (error, rows) {
                 if (error) reject(error);
                 let user = rows[0];
+                if (!user) {
+                    reject(`Email ${email} doesn't exist`)
+                }
                 resolve(user);
             });
         } catch (e) {

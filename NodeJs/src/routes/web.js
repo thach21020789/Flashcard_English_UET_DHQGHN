@@ -27,13 +27,15 @@ let initWebRoutes = (app) => {
   router.post("/forgot-password", loginController.handleForgotPassword)
   router.post("/reset-password/:token", loginController.handleResetPassword)
 
-  router.get("/group/:category", flashcardController.getVocabByC);
-  router.get("/group/:category/:difficulty", flashcardController.getVocabByCD);
-  router.get("/search/:word", flashcardController.getVocab);
+  router.get("/group/:category", loginController.checkLoggedIn, flashcardController.getVocabByC);
+  router.get("/group/:category/:difficulty", loginController.checkLoggedIn, flashcardController.getVocabByCD);
+  router.get("/search/:word", loginController.checkLoggedIn, flashcardController.getVocab);
 
 
   app.get("/user", (req, res) => {
-    res.send(req.user); // The req.user stores the entire user that has been authenticated inside of it.
+    return res.json({
+      user:req.user // The req.user stores the entire user that has been authenticated inside of it.
+    })
   });
 
   return app.use("/", router);

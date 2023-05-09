@@ -12,17 +12,6 @@ import cors from "cors";
 
 let app = express();
 
-// Set up Nodemailer
-const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,
-  auth: {
-    user: 'yourgmailusername@gmail.com',
-    pass: 'yourgmailpassword'
-  }
-});
-
 app.use(
     cors({
       origin: "http://localhost:3000", // <-- location of the react app were connecting to

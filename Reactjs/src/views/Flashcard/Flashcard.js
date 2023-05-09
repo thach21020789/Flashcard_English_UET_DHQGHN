@@ -4,6 +4,7 @@ import ReactCardFlip from 'react-card-flip';
 import './Flashcard.scss';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory } from 'react-router-dom';
 class Flashcard extends React.Component {
 
     constructor(props) {
@@ -22,21 +23,35 @@ class Flashcard extends React.Component {
         this.handleToPlaySound = this.handleToPlaySound.bind(this);
         this.handleNextWord = this.handleNextWord.bind(this);
     }
-
+    
     async componentDidMount() {
+    
         let dataFromTopicList = this.props.location.state;
         let level = dataFromTopicList.level;
         let topic = dataFromTopicList.topic;
-        // console.log(">>>check level and topic : ", topic + " " + level );
-        // console.log("check data get : ", this.props);
-        let res = await axios.get(`http://localhost:3001/${topic}/${level}`);
+
+        let checkAuth = await axios.get(
+            `http://localhost:3001/user`,
+            { withCredentials: true }
+        );
+        let user = checkAuth.data.user;
+        if (!user) {
+            this.props.history.push("/login");
+        }
+
+        let res = await axios.get(
+            `http://localhost:3001/group/${topic}/${level}`,
+            { withCredentials: true }
+        );
+
+        console.log("logged at flashcard")
         // let res = await axios.get(`http://localhost:3001/vehicle/easy`);
         // console.log("check data : ", res);
         this.setState({
             words: res.data
         })
 
-        console.log(this.state.words);
+        console.log("check state word: ", this.state.words);
     }
 
 
@@ -84,12 +99,12 @@ class Flashcard extends React.Component {
 
     render() {
         let { indexWord, words, vietNamese } = this.state;
-        // console.log(">>check index : ", indexWord);
+        // console.log(">>check index : ", indexWord); 
         console.log(">>check word: ", words);
         let wordEnglish = words[indexWord].word;
         let definitions = words[indexWord].definition;
         let vietNameses = words[indexWord].vietnamese;
-        
+
         return (
             <>
                 <div className='card-container'>

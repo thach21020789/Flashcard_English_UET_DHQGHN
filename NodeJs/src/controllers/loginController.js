@@ -3,6 +3,7 @@ import loginService from "../services/loginService"
 import bcrypt from "bcryptjs";
 import transporter from "../configs/mailConfig"
 import crypto from 'crypto'
+import fs from 'fs';
 
 let getLoginPage = (req, res) => {
     return res.render("login.ejs");
@@ -11,38 +12,46 @@ let getLoginPage = (req, res) => {
 let handleLogin = (req, res, next) => {
     passport.authenticate("localLogin", function (error, user, info) {
         if (error) {
-            return res.status(500).json(error);
+            return res.status(500).json({ error: error });
         }
         if (!user) {
-            return res.status(401).json(info.message);
+            return res.status(401).json({ error: info.message });
         }
         req.login(user, function (err) {
             if (err) {
-                return res.status(500).json(error);
+                return res.status(500).json({ error: error });
             } else {
-                return res.status(200).json(user);
+                return res.status(200).json({ user: user });
             }
         });
     })(req, res, next);
 };
 
+let checkAuthenticate = (req, res) => {
+    return res.send(req.isAuthenticated);
+}
+
 let checkLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
-        return res.redirect("/login");
+        return res.status(200).json({
+            message: "Not logged in"
+        });
     }
     next();
 };
 
 let checkLoggedOut = (req, res, next) => {
     if (req.isAuthenticated()) {
-        return res.redirect("/");
+        return res.redirect("http://localhost:3000/Home");
     }
     next();
 };
 
 let postLogOut = (req, res) => {
     req.session.destroy(function (err) {
-        return res.redirect("/login");
+        return res.status(200).json({
+            message: "Log out successfully"
+        });
     });
 };
 
@@ -53,9 +62,9 @@ let handleChangePassword = async (req, res) => {
 
         if (match) {
             let message = await loginService.changePassword(req.user.email, req.body.password)
-            return res.status(200).json(message)
+            return res.status(200).json({ message: message })
         } else {
-            return res.status(401).json("Incorrect old password")
+            return res.status(401).json({ error: "Incorrect old password" })
         }
     } catch (e) {
         return res.status(500).json(e)
@@ -63,40 +72,53 @@ let handleChangePassword = async (req, res) => {
 }
 
 let handleForgotPassword = async (req, res) => {
-    const email = req.body.email;
-    console.log(email)
+
+
     try {
+        const email = req.body.email;
+
+        let m = await loginService.findUserByEmail(email)
+
         // Generate a random token
         const token = crypto.randomBytes(32).toString('hex');
-        console.log(token)
-
         const hashedToken = crypto.createHash("sha256").update(token).digest('hex')
-        console.log()
         // Store the token in the database
         await loginService.storeToken(email, hashedToken)
 
-        // Send an email to the user with a link to reset their password
-        const mailOptions = {
-            from: 'Flash card <flashcardbruhbruh@bruh.com>',
-            to: email,
-            subject: 'Reset your password',
-            text: `http://localhost:3001/reset-password/${token}`
-        };
+        // read reset password html file
+        fs.readFile('../NodeJs/src/public/ResetPassword.html', 'utf8', (err, data) => {
 
-        console.log("reset password url: ", `http://localhost:3001/reset-password/${token}`)
-
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.error(error);
-                res.status(500).json({ error: 'Internal server error' });
-            } else {
-                console.log(info);
-                res.json({ message: 'Reset password email sent' });
+            if (err) {
+                console.error(err);
+                return;
             }
-        });
+
+            data = data.replace('<a href="http://localhost:3000/reset-password/test">Reset password</a>',
+            `<a href="http://localhost:3000/reset-password/${token}">Reset password</a>`)
+            const mailOptions = {
+                from: 'Flash card <flashcardbruhbruh@bruh.com>',
+                to: email,
+                subject: 'Reset your password',
+                html: data
+            };
+
+
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.error(error);
+                    return res.status(500).json({ error: 'Internal server error' });
+                } else {
+                    console.log(info);
+                    return res.json({ message: 'Check your email for a link to reset your password' });
+                }
+            });
+        })
+
+        // Send an email to the user with a link to reset their password
+
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({ error: error });
     }
 }
 
@@ -106,7 +128,7 @@ let handleResetPassword = async (req, res) => {
     try {
         const hashedToken = crypto.createHash("sha256").update(token).digest('hex')
         console.log("hashed token: ", hashedToken)
- 
+
         const user = await loginService.findUserByToken(hashedToken);
         console.log(user)
 
@@ -127,7 +149,7 @@ let handleResetPassword = async (req, res) => {
         res.json({ message: 'Password reset successful' });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({ error: error });
     }
 }
 
@@ -137,6 +159,7 @@ module.exports = {
     checkLoggedIn: checkLoggedIn,
     checkLoggedOut: checkLoggedOut,
     postLogOut: postLogOut,
+    checkAuthenticate,
     handleChangePassword: handleChangePassword,
     handleForgotPassword,
     handleResetPassword

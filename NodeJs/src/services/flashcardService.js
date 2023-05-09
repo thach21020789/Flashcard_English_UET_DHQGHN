@@ -47,7 +47,7 @@ let getVocabService = (word) => {
                     if (err) {
                         reject(err)
                     } else {
-                        resolve (rows)
+                        resolve (rows[0])
                     }
                 }
             );

@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
     "email" : "cao.hl.thang@gmail.com",
-    "password" : "ah8ay9ebnw"
+    "password" : "123"
 }
 
 
@@ -36,7 +36,7 @@ Content-Type: application/json
     "fullName" : "gaugau",
     "email" : "baquekhatnuoc@gmail.com",
     "password" : "123", 
-    "passwordConfirmation" : "123"
+    "confirmedPassword" : "123"
 }
 
 
@@ -59,11 +59,11 @@ Content-Type: application/json
 
 
 ###
-POST http://localhost:3001/reset-password/$2a$16$ZGW9Vrs//W/b7ZnAYgUI1.
+POST http://localhost:3001/reset-password/5a97ab41d7d07cd5350c27b6723ab5a7b760c8befe5f6e6d0a90c58eb6801f6e
 Content-Type: application/json
 
 
 {
-    "password" : "123"
+    "password" : "123123"
 }
 
