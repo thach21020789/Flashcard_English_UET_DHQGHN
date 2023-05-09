@@ -1,21 +1,24 @@
 
 .NavbarItems {
-  background: white;
+  background: rgb(245, 241, 241);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 30px;
-  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
+  padding: 0px 10% 0px 5%;
+  box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.25);
   width: 95%;
-  height: 80px;
-  border-radius: 13px;
+  height: 12%;
+  border-radius: 10px;
   position: fixed;
-  top: 20px;
+  top: 3%;
   left: 50%;
   transform: translate(-50%);
   z-index: 9999;
 }
 
+.NavbarItems > a > h1 {
+  margin-bottom: 0;
+}
 .navbar-logo {
   color: black;
   font-size: 2rem;
@@ -24,8 +27,8 @@
 
 .nav-menu {
   display: grid;
-  grid-template-columns: repeat(6, auto);
-  grid-gap: 10px;
+  grid-template-columns: repeat(5, auto);
+  grid-gap: 4%;
   list-style: none;
   align-items: center;
 }
@@ -34,11 +37,14 @@
   color: black;
   font-size: 1.2rem;
   font-weight: 600;
-  padding: 1rem 1rem;
+  padding: 0.7rem 1rem;
+  // padding: 10% 10% 10% 10%;
   white-space: nowrap;
+  
 }
+
 .nav-links i {
-  padding-right: 10px;
+  padding-right: 2%;
 }
 
 .nav-links:hover {
@@ -51,27 +57,11 @@
   display: none;
 }
 
-button {
-  padding: 0.5rem 1rem;
-  white-space: nowrap;
-  border-radius: 0.3rem;
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  transition: 0.2s ease-in-out;
-}
-
-button:hover {
-  background-color: #151516;
-  color: #fff;
-
-}
 .menu-icons {
   display: none;
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 1000px) {
   .NavbarItems {
     z-index: 99;
   }
@@ -90,47 +80,36 @@ button:hover {
     padding: 80px 0 30px 0;
     margin: 0;
     text-align: center;
-    transition: 0.3s ease-in-out;
+    transition: 0.5s ease-in-out;
     border-radius: 13px;
   }
   .nav-menu.active {
     left: 0;
+    border-radius: 10px;
+    box-shadow: 10px 7px 7px 7px rgba(0, 0, 0, 0.25);
     opacity: 1;
     z-index: -1;
-    transition: 0.3s ease-in-out;
+    transition: 0.5s ease-in-out;
   }
   .nav-links {
+    text-align: center;
     display: block;
     width: 100%;
     font-size: 1.2rem;
-    padding: 2rem 0;
+    padding: 5% 0;
   }
   .nav-links:hover {
     background: #01959a;
     transition: none;
   }
-  button {
-    display: none;
-  }
-  .nav-links-mobile {
-    display: block;
-    text-align: center;
-    padding: 1.5rem;
-    margin: auto;
-    border-radius: 4px;
-    width: 80%;
-    background: #01959a;
-    text-decoration: none;
-    color: #fff;
-    font-size: 1.2rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-  }
+  
   .menu-icons {
+    // padding-right: -1%;
+    padding-left: 20%;
     display: block;
     cursor: pointer;
   }
-  .menu-icons i {
+  .menu-icons > i {
     font-size: 1.2rem;
     color: #222;
   }

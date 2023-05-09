@@ -19,6 +19,12 @@ let getVocab = async (req, res) => {
     )
 }
 
+let getRandomVocab = async (req, res) => {
+    return res.status(200).json(
+        await flashcardService.getRandomVocabService()
+    )
+}
+
 module.exports = {
-    getVocabByC, getVocabByCD, getVocab
+    getVocabByC, getVocabByCD, getVocab, getRandomVocab
 }

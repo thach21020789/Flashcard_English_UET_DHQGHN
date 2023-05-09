@@ -46,19 +46,19 @@ class Level extends React.Component {
                 <ol className="topic-container">
                     <li style={{ accent: "#0D6EFD" }} className="easy-word" onClick={() => this.handleEasyLevel()}>
                         <div class="icon"><i class="fa-brands fa-codepen"></i></div>
-                        <div class="title">Dễ</div>
-                        <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, impedit?</div>
+                        <div class="title">EASY</div>
+                        <div class="descr">The lowest level</div>
                     </li>
 
                     <li style={{ accent: "#0D6EFD" }} className="normal-word" onClick={() => this.handleNormalLevel()}>
                         <div class="icon"><i class="fa-brands fa-html5"></i></div>
-                        <div class="title">Trung bình</div>
-                        <div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+                        <div class="title">MEDIUM</div>
+                        <div class="descr">The medium level</div>
                     </li>
                     <li style={{ accent: "#0D6EFD" }} className="hard-word" onClick={() => this.handleNormalLevel()}>
                         <div class="icon"><i class="fa-brands fa-css3"></i></div>
-                        <div class="title">Khó</div>
-                        <div class="descr">Lorem ipsum dolor sit.</div>
+                        <div class="title">HARD</div>
+                        <div class="descr">The highest level</div>
                     </li>
                 </ol>
             </>

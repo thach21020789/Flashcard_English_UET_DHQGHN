@@ -3,6 +3,10 @@ import React from "react";
 import { withRouter, Link } from "react-router";
 import './Nav.scss';
 import { MenuItem } from "./MenuItems";
+import {
+    NavLink
+} from "react-router-dom";
+
 class Nav extends React.Component {
     state = {clicked: false};
     handleClick = () => {
@@ -30,10 +34,8 @@ class Nav extends React.Component {
                             </li>
                         );
                     })}
-                    <button>Sign Up</button>
                 </ul>
             </nav>
-            
             </>
         )
     }

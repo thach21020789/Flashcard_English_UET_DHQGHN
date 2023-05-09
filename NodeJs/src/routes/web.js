@@ -30,7 +30,7 @@ let initWebRoutes = (app) => {
   router.get("/group/:category", loginController.checkLoggedIn, flashcardController.getVocabByC);
   router.get("/group/:category/:difficulty", loginController.checkLoggedIn, flashcardController.getVocabByCD);
   router.get("/search/:word", loginController.checkLoggedIn, flashcardController.getVocab);
-
+  router.get("/search-random", loginController.checkLoggedIn, flashcardController.getRandomVocab);
 
   app.get("/user", (req, res) => {
     return res.json({

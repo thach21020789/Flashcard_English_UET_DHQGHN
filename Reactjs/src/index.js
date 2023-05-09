@@ -4,7 +4,6 @@ import App from './views/App';
 import reportWebVitals from './reportWebVitals';
 import './styles/global.scss';
 
-
 ReactDOM.render(
   <React.StrictMode>
     {/* <Login></Login> */}
