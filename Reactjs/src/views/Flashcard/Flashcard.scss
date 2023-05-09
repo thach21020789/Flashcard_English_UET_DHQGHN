@@ -1,12 +1,14 @@
 .card-container {
 
-    border         : 50px solid white;
+    border         : 200px solid white;
     display        : flex;
     justify-content: center;
 
     .card {
-        background-color: white;
-        border          : 3px solid #ccc;
+        background-color: #EEEEEE;
+        border          : 1px solid black;
+        border-radius   : 10px;
+        box-shadow: 10px 10px 10px 10px rgba(0,0,0,0.25);
         padding         : 10px;
         width           : 350px;
         height          : 500px;
@@ -19,16 +21,18 @@
         .buttonNextword {
             position        : absolute;
             bottom          : 0;
-            width           : 370px;
+            width           : 350px;
             background-color: bisque;
-            right           : 3px;
+            right           : 1px;
+            
         }
 
-        .buttonNextword button:hover {
+        .buttonNextword:hover {
             background-color: aqua;
         }
 
         .volum  {
+            cursor: pointer;
             position: absolute;
             top     : 0px;
             left    : 0px;
@@ -49,7 +53,7 @@
             font-weight: 600;
             color      : black;
             position   : absolute;
-            top        : 150px;
+            top        : 80px;
         }
     }
 }

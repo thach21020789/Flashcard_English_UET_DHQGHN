@@ -67,3 +67,7 @@ Content-Type: application/json
     "password" : "123123"
 }
 
+
+###
+GET http://localhost:3001/search-random
+

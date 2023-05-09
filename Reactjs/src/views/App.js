@@ -1,14 +1,12 @@
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 import './App.scss';
 import Flashcard from './Flashcard/Flashcard';
 import Nav from './Nav/Nav.js';
 import Home from './Home/Home';
 import MiniGame from './MiniGames/MiniGame';
-import TopicList from './tests/TopicList';
-import Test from './tests/Test';
 import Search from './Search/Search';
 import Login from './Admins/Login/Login';
+import Level from  "./Flashcard/Levels/Level";
+import TopicList from  "./Flashcard/Levels/TopicList";
 import Register from './Admins/Register/Register';
 import ForgotPassword from './Admins/ForgotPassword/ForgotPassword';
 import ResetPassword from './Admins/ForgotPassword/ResetPassword';
@@ -23,7 +21,7 @@ import {
 function App() {
   return (
     <>
-      {}
+      { }
       <BrowserRouter>
         <Switch>
           <Route path="/login" exact>
@@ -55,9 +53,9 @@ function App() {
                     <MiniGame></MiniGame>
                   </Route>
                   <Route path="/Flashcard" exact>
-                    <Test></Test>
+                    <Level></Level>
                   </Route>
-                  <Route path="/Test/easy" exact>
+                  <Route path="/Level" exact>
                     <TopicList></TopicList>
                   </Route>
                   <Route path="/mainFlashcard" exact>
@@ -66,12 +64,8 @@ function App() {
                   <Route path="/Search" exact>
                     <Search></Search>
                   </Route>
-
                 </Switch>
               </header>
-
-
-              {}
             </div>
           </Route>
         </Switch>

@@ -1,32 +1,37 @@
 body {
-    background: #e4ebf4;
+    background   : grey;
+    bottom: 50px;
     // padding   : 2rem;
+
 }
 
-h1 {
+.header {
     font-family: sans-serif;
+    margin-top: 10%;
+    font-size: 40px;
+
 }
 
-.olcards,
-.olcards * {
-    // margin    : 0;
+.olcards{
+    margin-bottom    : 0;
     // padding   : 0;
     box-sizing: border-box;
 }
 
- .olcards {
+.olcards {
     align-items   : center;
     list-style    : none;
     counter-reset : cardCount;
     font-family   : sans-serif;
-    display: flex;
+    display       : flex;
     --cardsGap    : 1rem;
     gap           : var(--cardsGap);
     padding-bottom: var(--cardsGap);
-    .content{
+
+    .content {
         // background-color: bisque;
     }
- }
+}
 
 .olcards li {
     counter-increment: cardCount;
@@ -52,6 +57,12 @@ h1 {
 .olcards li .content .text {
     grid-area: text;
 }
+ol > li > div > i {
+    height: 10px;
+    width: 20px;
+}
+
+
 // .olcards li::before {
 //     // content        : counter(cardCount, decimal-leading-zero);
 //     background     : white;

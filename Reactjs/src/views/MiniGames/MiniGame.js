@@ -1,11 +1,75 @@
-import React from "react";
+import React, { useEffect, useState } from 'react'
+import "./MiniGame.scss"
+import Wordle from './components/Wordle';
+import Help from './components/Help';
+import axios from 'axios'
+import { useHistory } from 'react-router-dom';
 
-class MiniGame extends React.Component{
-        render(){
-            return(
-                <div>Hello MiniGame</div>
-        )
-    }
+function MiniGame() {
+
+  // // check login
+  // const history = useHistory();
+  // let checkAuth = axios.get(
+  //   `http://localhost:3001/user`,
+  //   { withCredentials: true }
+  // );
+  // console.log("check user: ", checkAuth)
+  // let user = checkAuth.data.user;
+  // if (!user) {
+  //   history.push("/login");
+  // }
+
+
+  // const randomWord = axios.get('http://localhost:3001/search-random', { withCredentials: true });
+  // const solution = randomWord.word;
+  // console.log(solution)
+  // const [open, setOpen] = useState(false);
+
+  const [solution, setSolution] = useState('');
+  const [open, setOpen] = useState(false);
+  
+  // check login
+  const history = useHistory();
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3001/user`, { withCredentials: true });
+        const user = response.data.user;
+        if (!user) {
+          history.push("/login");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    checkAuth();
+  }, [history]);
+  
+  useEffect(() => {
+    const fetchRandomWord = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/search-random', { withCredentials: true });
+        setSolution(response.data.word);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchRandomWord();
+  }, []);
+
+
+  return (
+    <>
+      <div className="minigame">
+        <h1>MiniGame
+          <i className="fa-solid fa-circle-question" onClick={() => setOpen(true)}></i>
+          {<Help open={open} onClose={() => setOpen(false)} />}
+
+        </h1>
+        {solution && <Wordle solution={solution} />}
+      </div>
+    </>
+  )
 }
 
-export default MiniGame;
+export default MiniGame

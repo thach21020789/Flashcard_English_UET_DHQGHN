@@ -23,6 +23,7 @@
  }
 
  h1 {
+    margin-bottom: 3rem;
    text-align: center;
    color     : black;
  }
@@ -40,14 +41,14 @@
    justify-content: center;
  }
 
- li {
+ ol > li {
    --frontColor: white;
    --width     : 10em;
    --inlineP   : 0.5rem;
    --borderR   : 4rem;
    --arrowW    : 2rem;
    --arrowH    : 1.5rem;
-
+  cursor: pointer;
    counter-increment: cardnr;
    width            : calc(var(--width) - var(--inlineP) * 2);
    display          : grid;
@@ -58,53 +59,57 @@
    margin-bottom: calc(var(--borderR));
    position     : relative;
 
+   animation: bounce 0.5s ease-in-out forwards;
+
  }
 
- li .icon,
- li .title,
- li .descr {
+ ol > li .icon,
+ ol > li .title,
+ ol > li .descr {
    background    : var(--frontColor);
+  // background-color: white;
    padding-inline: 1rem;
    padding-bottom: 1rem;
  }
 
- li .icon,
- li .title {
+ ol > li .icon,
+ ol > li .title {
    color         : var(--accent-color);
    text-align    : center;
    padding-bottom: 0.5rem;
  }
 
- li .title,
- li .descr {
+ ol > li .title,
+ ol> li .descr {
    filter: drop-shadow(0.125rem 0.125rem 0.075rem rgba(0, 0, 0, 0.25));
  }
 
- li .icon {
+ ol > li .icon {
    grid-area       : icon;
    font-size       : 2rem;
    display         : grid;
    place-items     : center;
    border-radius   : var(--borderR) 0 0 0;
    position        : relative;
-   background-color: #FFCCFF;
+   background-color: pink;
  }
 
- li .title {
+ ol > li .title {
    grid-area       : title;
-   font-size       : 1.1rem;
+   font-size       : 1.2rem;
    font-weight     : bold;
    background-color: aqua;
+   text-align: center;
  }
 
- li .descr {
+ ol > li .descr {
    grid-area       : descr;
-   font-size       : 0.85rem;
+   font-size       : 0.9rem;
    text-align      : center;
    background-color: beige;
  }
 
- li .descr::before {
+ ol > li .descr::before {
    content   : "";
    width     : var(--arrowW);
    height    : var(--arrowH);
@@ -115,7 +120,7 @@
    clip-path : polygon(0 0, 100% 0, 50% 100%);
  }
 
- li::after {
+ ol > li::after {
    content : counter(cardnr, decimal-leading-zero);
    position: absolute;
    z-index : -1;
@@ -140,7 +145,7 @@
    color    : white;
  }
 
- li::before {
+ ol > li::before {
    content      : "";
    position     : absolute;
    height       : var(--borderR);
@@ -153,3 +158,16 @@
    opacity         : 0.5;
    filter          : blur(2px);
  }
+
+
+ @keyframes bounce {
+  0% {
+      transform: scale(1);
+  }
+  50% {
+      transform: scale(1.2);
+  }
+  100% {
+      transform: scale(1);
+  }
+}

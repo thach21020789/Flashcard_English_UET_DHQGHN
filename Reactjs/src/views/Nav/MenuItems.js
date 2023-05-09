@@ -24,9 +24,5 @@ export const MenuItem = [
         cName : "nav-links",
         icon : "fa-solid fa-magnifying-glass"
     },
-    {
-        title : "Sign Up",
-        url : "/SignUp",
-        cName : "nav-links-mobile",
-    },
+    
 ]
