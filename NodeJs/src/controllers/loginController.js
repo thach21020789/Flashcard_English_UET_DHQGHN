@@ -32,6 +32,7 @@ let checkAuthenticate = (req, res) => {
 }
 
 let checkLoggedIn = (req, res, next) => {
+
     if (!req.isAuthenticated()) {
         return res.status(200).json({
             message: "Not logged in"
@@ -49,6 +50,7 @@ let checkLoggedOut = (req, res, next) => {
 
 let postLogOut = (req, res) => {
     req.session.destroy(function (err) {
+        
         return res.status(200).json({
             message: "Log out successfully"
         });
@@ -114,8 +116,6 @@ let handleForgotPassword = async (req, res) => {
             });
         })
 
-        // Send an email to the user with a link to reset their password
-
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error });
@@ -131,18 +131,6 @@ let handleResetPassword = async (req, res) => {
 
         const user = await loginService.findUserByToken(hashedToken);
         console.log(user)
-
-        // Compare the token from the request with the stored token
-        // const match = await bcrypt.compare(token, storedToken);
-
-        // if (!match) {
-        //     res.status(400).json({ error: 'Invalid token' });
-        //     return;
-        // }
-
-        // Hash the new password
-        //const hashedPassword = await bcrypt.hash(password, 10);
-
         // Update the user's password in the database
         await loginService.changePassword(user.email, req.body.password)
 

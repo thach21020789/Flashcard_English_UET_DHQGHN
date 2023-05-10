@@ -26,10 +26,6 @@ class Flashcard extends React.Component {
     
     async componentDidMount() {
     
-        let dataFromTopicList = this.props.location.state;
-        let level = dataFromTopicList.level;
-        let topic = dataFromTopicList.topic;
-
         // check login
         let checkAuth = await axios.get(
             `http://localhost:3001/user`,
@@ -39,6 +35,10 @@ class Flashcard extends React.Component {
         if (!user) {
             this.props.history.push("/login");
         }
+
+        let dataFromTopicList = this.props.location.state;
+        let level = dataFromTopicList.level;
+        let topic = dataFromTopicList.topic;
 
         let res = await axios.get(
             `http://localhost:3001/group/${topic}/${level}`,

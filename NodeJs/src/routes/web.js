@@ -6,6 +6,7 @@ import flashcardController from "../controllers/flashcardController"
 import auth from "../validation/authValidation";
 import passport from "passport";
 import initPassportLocal from "../controllers/passportLocalController";
+import quizController from "../controllers/quizController"
 
 import testController from "../controllers/testController"
 // Init all passport
@@ -15,13 +16,13 @@ let router = express.Router();
 
 let initWebRoutes = (app) => {
   router.get("/", loginController.checkLoggedIn, homePageController.getHomePage);
-  router.post("/logout", loginController.postLogOut);
-
+  
   router.get("/register", registerController.getRegisterPage);
   router.post("/register", registerController.createNewUser);
 
   router.get("/login", loginController.checkLoggedOut, loginController.getLoginPage);
   router.post("/login", loginController.handleLogin);
+  router.get("/logout", loginController.postLogOut);
 
   router.post("/change-password", loginController.checkLoggedIn, loginController.handleChangePassword)
   router.post("/forgot-password", loginController.handleForgotPassword)
@@ -31,6 +32,7 @@ let initWebRoutes = (app) => {
   router.get("/group/:category/:difficulty", loginController.checkLoggedIn, flashcardController.getVocabByCD);
   router.get("/search/:word", loginController.checkLoggedIn, flashcardController.getVocab);
   router.get("/search-random", loginController.checkLoggedIn, flashcardController.getRandomVocab);
+  router.get("/search-random-quiz", quizController.getRandomQuiz)
 
   app.get("/user", (req, res) => {
     return res.json({

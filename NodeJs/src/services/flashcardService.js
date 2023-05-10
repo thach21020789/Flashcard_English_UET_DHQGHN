@@ -42,7 +42,7 @@ let getVocabService = (word) => {
     return new Promise( (resolve, reject) => {
         try {
             DBconnection.query(
-                "SELECT *, (SELECT IPA FROM phonemes WHERE word = ?) AS IPA FROM entries WHERE word = ? GROUP BY word;", [word, word],
+                "SELECT * FROM entries WHERE word = ? GROUP BY word;", [word],
                 function(err, rows) {
                     if (err) {
                         reject(err)
@@ -61,7 +61,7 @@ let getRandomVocabService = () => {
     return new Promise( (resolve, reject) => {
         try {
             DBconnection.query(
-                "SELECT UPPER(word) as word, IPA, wordtype, definition, vietnamese FROM entries WHERE LENGTH(word) = 5 AND category_id != 0 ORDER BY RAND() LIMIT 1;",
+                "SELECT UPPER(word) as word, IPA, wordtype, definition, vietnamese, difficulty, name AS category FROM entries e INNER JOIN category c ON e.category_id = c.category_id WHERE LENGTH(word) = 5 ORDER BY RAND() LIMIT 1;",
                 function(err, rows) {
                     if (err) {
                         reject(err)

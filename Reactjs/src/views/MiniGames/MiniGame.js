@@ -7,27 +7,8 @@ import { useHistory } from 'react-router-dom';
 
 function MiniGame() {
 
-  // // check login
-  // const history = useHistory();
-  // let checkAuth = axios.get(
-  //   `http://localhost:3001/user`,
-  //   { withCredentials: true }
-  // );
-  // console.log("check user: ", checkAuth)
-  // let user = checkAuth.data.user;
-  // if (!user) {
-  //   history.push("/login");
-  // }
-
-
-  // const randomWord = axios.get('http://localhost:3001/search-random', { withCredentials: true });
-  // const solution = randomWord.word;
-  // console.log(solution)
-  // const [open, setOpen] = useState(false);
-
   const [solution, setSolution] = useState('');
   const [open, setOpen] = useState(false);
-  
   // check login
   const history = useHistory();
   useEffect(() => {
@@ -49,7 +30,7 @@ function MiniGame() {
     const fetchRandomWord = async () => {
       try {
         const response = await axios.get('http://localhost:3001/search-random', { withCredentials: true });
-        setSolution(response.data.word);
+        setSolution(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -66,7 +47,8 @@ function MiniGame() {
           {<Help open={open} onClose={() => setOpen(false)} />}
 
         </h1>
-        {solution && <Wordle solution={solution} />}
+        {solution && <div className="hint">Hint: {solution.category}</div>}
+        {solution && <Wordle solution={solution.word} />}
       </div>
     </>
   )

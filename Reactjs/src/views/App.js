@@ -10,6 +10,7 @@ import TopicList from  "./Flashcard/Levels/TopicList";
 import Register from './Admins/Register/Register';
 import ForgotPassword from './Admins/ForgotPassword/ForgotPassword';
 import ResetPassword from './Admins/ForgotPassword/ResetPassword';
+import User from './Admins/User/User'
 
 import {
   BrowserRouter,
@@ -63,6 +64,9 @@ function App() {
                   </Route>
                   <Route path="/Search" exact>
                     <Search></Search>
+                  </Route>
+                  <Route path="/User" exact>
+                    <User></User>
                   </Route>
                 </Switch>
               </header>

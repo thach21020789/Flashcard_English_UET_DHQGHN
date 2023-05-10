@@ -33,7 +33,7 @@ const Login = () => {
                             {error && <div className="error">{error}</div>}
                             <div className="inputbox">
                                 <ion-icon name="mail-outline" />
-                                <input type="email" id="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
+                                <input type="email" id="email" required autocomplete="off" list="autocompleteOff" value={email} onChange={(e) => setEmail(e.target.value)} />
                                 <label htmlFor="email">Email</label>
                             </div>
                             <div className="inputbox">
