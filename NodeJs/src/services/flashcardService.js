@@ -76,6 +76,25 @@ let getRandomVocabService = () => {
     });
 };
 
+let getRandomVocabService = () => {
+    return new Promise( (resolve, reject) => {
+        try {
+            DBconnection.query(
+                "SELECT UPPER(word) as word, IPA, wordtype, definition, vietnamese FROM entries WHERE LENGTH(word) = 5 AND category_id != 0 ORDER BY RAND() LIMIT 1;",
+                function(err, rows) {
+                    if (err) {
+                        reject(err)
+                    } else {
+                        resolve (rows[0])
+                    }
+                }
+            );
+        } catch (err) {
+            reject(err);
+        }
+    });
+};
+
 module.exports = {
     getVocabByCategory, getVocabByCategoryAndDifficulty, getVocabService, getRandomVocabService
 }
