@@ -34,6 +34,9 @@ let initWebRoutes = (app) => {
   router.get("/search-random", loginController.checkLoggedIn, flashcardController.getRandomVocab);
   router.get("/search-random-quiz", quizController.getRandomQuiz)
 
+  router.post("/save-flashcard", loginController.checkLoggedIn, flashcardController.saveFlashcard)
+  router.get("/save-flashcard/:user_id", loginController.checkLoggedIn, flashcardController.getSavedFlashcard)
+
   app.get("/user", (req, res) => {
     return res.json({
       user:req.user // The req.user stores the entire user that has been authenticated inside of it.

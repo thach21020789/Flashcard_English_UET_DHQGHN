@@ -42,8 +42,9 @@ class Level extends React.Component {
         return (
             // <div> Hello</div>
             <>
-                <h1>Chọn chủ đề</h1>
+                <h1 className="level-header">Chọn chủ đề</h1>
                 <ol className="topic-container">
+                    
                     <li style={{ accent: "#0D6EFD" }} className="easy-word" onClick={() => this.handleEasyLevel()}>
                         <div class="icon"><i class="fa-brands fa-codepen"></i></div>
                         <div class="title">EASY</div>

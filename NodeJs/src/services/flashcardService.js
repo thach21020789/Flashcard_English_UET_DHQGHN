@@ -76,16 +76,48 @@ let getRandomVocabService = () => {
     });
 };
 
-let getRandomVocabService = () => {
+let saveFlashcardService= (user_id, word_id) => {
     return new Promise( (resolve, reject) => {
         try {
             DBconnection.query(
-                "SELECT UPPER(word) as word, IPA, wordtype, definition, vietnamese FROM entries WHERE LENGTH(word) = 5 AND category_id != 0 ORDER BY RAND() LIMIT 1;",
+                `SELECT (SELECT IF(? IN (SELECT word_id FROM flashcard_storage WHERE id = ? ), "You've already saved this flashcard", "Free to save" )) AS flashcard_status;`, [word_id, user_id],
                 function(err, rows) {
                     if (err) {
                         reject(err)
                     } else {
-                        resolve (rows[0])
+                        if (rows[0].flashcard_status == "Free to save") {
+                            DBconnection.query(
+                                `INSERT INTO flashcard_storage SET id = ?, word_id = ?`, [user_id, word_id], function(err, rows) {
+                                    if (err) {
+                                        reject (err)
+                                    } else {
+                                        resolve ("Save flashcard successfully")
+                                    }
+                                }
+                            )
+                        } else {
+                            reject("You've already saved this flashcard")
+                        }
+                    }
+                }
+            );
+        } catch (err) {
+            reject(err);
+        }
+    });
+};
+
+let getSavedFlashcard = (user_id) => {
+    console.log("check user_id: ", user_id)
+    return new Promise( (resolve, reject) => {
+        try {
+            DBconnection.query(
+                "SELECT a.id, fullname, e.id as word_id, word, IPA, wordtype, definition, vietnamese FROM `entries` e INNER JOIN flashcard_storage f ON e.id = f.word_id INNER JOIN account a ON f.id = a.id WHERE a.id = ?", [user_id], 
+                function(err, rows) {
+                    if (err) {
+                        reject(err)
+                    } else {
+                        resolve (rows)
                     }
                 }
             );
@@ -96,5 +128,5 @@ let getRandomVocabService = () => {
 };
 
 module.exports = {
-    getVocabByCategory, getVocabByCategoryAndDifficulty, getVocabService, getRandomVocabService
+    getVocabByCategory, getVocabByCategoryAndDifficulty, getVocabService, getRandomVocabService, saveFlashcardService, getSavedFlashcard
 }

@@ -8,6 +8,7 @@ import { useHistory } from 'react-router-dom';
 function MiniGame() {
 
   const [solution, setSolution] = useState('');
+  const [solutionInfo, setSolutionInfo] = useState('');
   const [open, setOpen] = useState(false);
   // check login
   const history = useHistory();
@@ -48,7 +49,7 @@ function MiniGame() {
 
         </h1>
         {solution && <div className="hint">Hint: {solution.category}</div>}
-        {solution && <Wordle solution={solution.word} />}
+        {solution && <Wordle solution={solution.word} solutionInfo={solution}/>}
       </div>
     </>
   )

@@ -39,7 +39,6 @@ class Search extends Component {
              { withCredentials: true });
 
             this.setState({ result: response.data });
-            
         } catch (error) {
             console.log(error.data)
             this.setState({ error: error.data.error });

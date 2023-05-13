@@ -19,7 +19,6 @@
         text-align: center;
         font-size: 24px;
 
-
         .volum {
             cursor: pointer;
             position: absolute;
@@ -60,7 +59,11 @@
             position: absolute;
             top: 150px;
         }
+
     }
+
+
+
 }
 
 .buttonContainer {
@@ -102,12 +105,3 @@
 .click-disable:hover {
     background-color: lightgray !important;
 }
-
-.card-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    overflow: auto;
-  }

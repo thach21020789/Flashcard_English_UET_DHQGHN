@@ -1,3 +1,4 @@
+import { response } from 'express'
 import flashcardService from '../services/flashcardService'
 
 let getVocabByC = async (req, res) => {
@@ -25,6 +26,28 @@ let getRandomVocab = async (req, res) => {
     )
 }
 
+
+let saveFlashcard = async (req, res) => {
+    try {
+        let response = await flashcardService.saveFlashcardService(req.body.user_id, req.body.word_id)
+        return res.status(200).json({
+            message : response
+        })
+    } catch (error) {
+        console.log("check error at flashcard controller: ", error)
+        return res.status(406).json({
+            error : error
+        })
+    }
+    
+}
+
+let getSavedFlashcard = async (req, res) => {
+    return res.status(200).json(
+        await flashcardService.getSavedFlashcard(req.params.user_id)
+    )
+}
+
 module.exports = {
-    getVocabByC, getVocabByCD, getVocab, getRandomVocab
+    getVocabByC, getVocabByCD, getVocab, getRandomVocab, saveFlashcard, getSavedFlashcard
 }

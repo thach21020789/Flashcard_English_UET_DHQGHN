@@ -7,7 +7,7 @@ const useWordle = (solution) => {
     const [history, setHistory] = useState(["ninja"]);//each guess is a string
     const [isCorrect, setIsCorrect] = useState(false);
     const [usedKeys, setUsedKeys] = useState({});
-
+    const [error, setError] = useState('')
      //format a guess into a array of letter objects
     //ex: [{key: 'a', color:'yellow'}]
     const formatGuess = () => {
@@ -72,9 +72,10 @@ const useWordle = (solution) => {
             return newKeys;
         })
         setCurrentGuess('')
+        setError('')
     } 
 
-    const handleKeyDown = ({key}) => {
+    const handleKeyDown = ({key}) => { 
         if (key === 'Enter') {
             return
         }
@@ -88,18 +89,18 @@ const useWordle = (solution) => {
         if (key === "Enter") {
             //only add guess if turn is more than 5
             if (turn > 5) {
-                console.log('you used all your guesses')
+                setError('you used all your guesses')
                 return;
             }
             //don't allow duplicate words
             if (history.includes(currentGuess)) {
-                console.log('you already tried that word');
+                setError('you already tried that word');
                 return;
             }
 
             //check word is 5 chars long
             if (currentGuess.length !== 5) {
-                console.log('word must be 5 chars long')
+                setError('word must be 5 chars long')
                 return;
             }
             const formatted = formatGuess();
@@ -119,6 +120,6 @@ const useWordle = (solution) => {
         }
     }
 
-    return {turn, currentGuess, guesses, isCorrect,usedKeys, handleKeyup, handleKeyDown};
+    return {turn, currentGuess, guesses, isCorrect,usedKeys, handleKeyup, handleKeyDown, error};
 }
 export default useWordle;

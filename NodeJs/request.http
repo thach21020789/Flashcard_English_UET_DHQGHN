@@ -14,9 +14,9 @@ Content-Type: application/json
 
 
 {
-    "email" : "cao.hl.thang@gmail.com",
-    "oldPassword" : "ah8ay9ebnww",
-    "password" : "ah8ay9ebnw"
+    "currentPassword" : "123",
+    "password" : "123",
+    "confirmedPassword" : "121"
 }
 
 ###
@@ -70,4 +70,14 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3001/search-random
+
+###
+POST http://localhost:3001/save-flashcard
+Content-Type: application/json
+
+
+{
+    "user_id" : 1,
+    "word_id" : 1
+}
 

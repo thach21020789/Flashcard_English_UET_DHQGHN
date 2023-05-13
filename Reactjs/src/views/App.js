@@ -11,6 +11,7 @@ import Register from './Admins/Register/Register';
 import ForgotPassword from './Admins/ForgotPassword/ForgotPassword';
 import ResetPassword from './Admins/ForgotPassword/ResetPassword';
 import User from './Admins/User/User'
+import SavedFlashcard from './Admins/User/SavedFlashcard';
 
 import {
   BrowserRouter,
@@ -67,6 +68,9 @@ function App() {
                   </Route>
                   <Route path="/User" exact>
                     <User></User>
+                  </Route>
+                  <Route path="/User/Collection" exact>
+                    <SavedFlashcard></SavedFlashcard>
                   </Route>
                 </Switch>
               </header>

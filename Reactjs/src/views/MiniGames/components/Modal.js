@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Wordle from './Wordle'
 import MiniGame from '../MiniGame';
 
-function Modal({ isCorrect, turn, solution }) {
+function Modal({ isCorrect, turn, solution, solutionInfo}) {
   
   const [timer, setTimer] = useState(15);
 
@@ -19,9 +19,13 @@ function Modal({ isCorrect, turn, solution }) {
     <div className='modal'>
         
         {isCorrect && (
-            <div>
+            <div className='winModal'>
                 <h1>You Win</h1>
                 <p className='solution'> Solution: {solution} </p>
+                <p className='IPA'> IPA: {solutionInfo.IPA} </p>
+                <p className='wordtype'> Wordtype: {solutionInfo.wordtype} </p>
+                <p className='definition'> Definition: {solutionInfo.definition} </p>
+                <p className='vietnamese'> Vietnamese: {solutionInfo.vietnamese} </p>
                 <p>You found the solution in {turn} guesses</p>
                 <p className='timer'>Next word in: {timer} seconds</p>
                 <br></br>
@@ -30,14 +34,17 @@ function Modal({ isCorrect, turn, solution }) {
         )}
 
         {!isCorrect && (
-            <div>
+            <div className='loseModal'>
                 <h1>You Loose</h1>
-                <p className='solution'>Solution:  {solution} </p>
+                <p className='solution'>Solution: {solution} </p>
+                <p className='IPA'> IPA: {solutionInfo.IPA} </p>
+                <p className='wordtype'> Wordtype: {solutionInfo.wordtype} </p>
+                <p className='definition'> Definition: {solutionInfo.definition} </p>
+                <p className='vietnamese'> Vietnamese: {solutionInfo.vietnamese} </p>
                 <p>Better luck next time</p>
                 <p className='timer'>Next word in: {timer} seconds</p>
                 <br></br>
                 <a href="MiniGame">PlayAgain</a>
-
         </div>
         )}
     </div>

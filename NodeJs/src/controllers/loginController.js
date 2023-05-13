@@ -59,14 +59,17 @@ let postLogOut = (req, res) => {
 
 let handleChangePassword = async (req, res) => {
     try {
-        console.log(req.body.oldPassword, req.user.password)
-        let match = await bcrypt.compare(req.body.oldPassword, req.user.password);
+        if (req.body.password != req.body.confirmedPassword) {
+            return res.status(401).json({ error: "Confirmed password doesn't match new password" })
+        }
+        console.log(req.body.currentPassword, req.body.password)
+        let match = await bcrypt.compare(req.body.currentPassword, req.user.password);
 
         if (match) {
             let message = await loginService.changePassword(req.user.email, req.body.password)
             return res.status(200).json({ message: message })
         } else {
-            return res.status(401).json({ error: "Incorrect old password" })
+            return res.status(401).json({ error: "Incorrect current password" })
         }
     } catch (e) {
         return res.status(500).json(e)

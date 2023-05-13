@@ -86,7 +86,7 @@ class TopicList extends React.Component {
     render() {
         return (
             <>
-                <h1 className="header">Chọn chủ đề</h1>
+                <h1 className="topic-header">Chọn chủ đề</h1>
                 <ol class="olcards">
                 
                     <li style={{ cardColor: "#fc374e" }} onClick={() => this.handleClickTopicVehicle()} level={"esay"}>

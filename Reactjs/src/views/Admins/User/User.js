@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import './User.scss';
+import Modal from './Modal'
 import { useHistory, withRouter } from 'react-router-dom';
 
 function User() {
     const [user, setUser] = useState('');
+    const [showModal, setShowModal] = useState(false);
 
     // check login
     const history = useHistory();
@@ -26,28 +28,50 @@ function User() {
         checkAuth();
     }, [history]);
 
-    const handleClick = async () => {
+    function handleOpenModal() {
+        console.log("open")
+        setShowModal(true);
+    }
+
+    function handleCloseModal() {
+        console.log("close")
+        setShowModal(false);
+    }
+
+    function handleViewCollection() {
+        history.push("/User/Collection");
+    }
+
+    const handleClickLogout = async () => {
+        console.log("logout")
         try {
-          const response = await axios.get('http://localhost:3001/logout', {withCredentials: true});
-          
-          console.log(response)
-          history.push("/login");
+            const response = await axios.get('http://localhost:3001/logout', { withCredentials: true });
+
+            history.push("/login");
         } catch (error) {
-          console.error(error);
+            console.error(error);
         }
-      };
+    };
+
 
     return (
-        <div className="user-info">
-            <img
-                src="https://static.vecteezy.com/system/resources/previews/000/574/512/original/vector-sign-of-user-icon.jpg"
-                alt="User Avatar"
-            />
-            <h2>{user.fullname}</h2>
-            <p>Email: {user.email}</p>
+        <>
+            <div className="user-info">
+                <img
+                    src="https://static.vecteezy.com/system/resources/previews/000/574/512/original/vector-sign-of-user-icon.jpg"
+                    alt="User Avatar"
+                />
+                <h2>{user.fullname}</h2>
+                <p>Email: {user.email}</p>
 
-            <button className='logout-btn' onClick={handleClick}>Log out</button>
-        </div>
+                <button className='view-collection-btn' onClick={handleViewCollection}>View collection</button>
+                <button className='change-password-btn' onClick={handleOpenModal}>Change password</button>
+                <button className='logout-btn' onClick={handleClickLogout}>Log out</button>
+            </div>
+            
+            {showModal && <Modal show={showModal} handleCloseModal={handleCloseModal} />}
+        </>
+
     );
 };
 
