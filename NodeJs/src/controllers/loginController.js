@@ -32,10 +32,9 @@ let checkAuthenticate = (req, res) => {
 }
 
 let checkLoggedIn = (req, res, next) => {
-
     if (!req.isAuthenticated()) {
-        return res.status(200).json({
-            message: "Not logged in"
+        return res.status(401).json({
+            error: "Not logged in"
         });
     }
     next();

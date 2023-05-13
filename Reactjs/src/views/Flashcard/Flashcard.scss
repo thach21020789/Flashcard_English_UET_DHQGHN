@@ -11,7 +11,7 @@
         border-radius: 10px;
         box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.25);
         padding: 10px;
-        width: 350px;
+        width: 360px;
         height: 500px;
         display: flex;
         justify-content: center;
@@ -22,7 +22,7 @@
 
         .volum {
             cursor: pointer;
-            position: absolute;
+            position: fixed;
             top: 0px;
             left: 0px;
         }
@@ -35,6 +35,7 @@
             color: black;
             font-size: 18px;
             font-weight: 600;
+            top: 80px;
         }
 
         .vietNamese {
@@ -42,7 +43,7 @@
             font-weight: 600;
             color: black;
             position: absolute;
-            top: 80px;
+            top: 60%;
         }
 
         .wordtype {
@@ -50,7 +51,7 @@
             font-weight: 600;
             color: black;
             position: absolute;
-            top: 120px;
+            top: 50%;
         }
 
         .wordIPA {
@@ -60,17 +61,27 @@
             position: absolute;
             top: 150px;
         }
+        .content-front-definition {
+            position: relative;
+            font-size: 18px;
+        }
     }
+}
+.card {
+    width: 360px;
 }
 
 .buttonContainer {
     position: absolute;
     bottom: 0;
+    top: 800px;
+
 
     .buttonPreviousWord, .buttonSaveWord, .buttonNextWord  {
         position: relative;
         width: 200px;
-        background-color: rgba($color: #e4dd6f, $alpha: 1.0)
+        background-color: rgba($color: #e4dd6f, $alpha: 1.0);
+        margin: 0px;
     }
 
     .buttonPreviousWord {
@@ -91,7 +102,8 @@
     }
 
     .buttonPreviousWord:hover, .buttonSaveWord:hover, .buttonNextWord:hover {
-        background-color: rgba($color: #e4dd6f, $alpha: 0.7)
+        margin: 0px;
+        background-color: rgba($color: #e4dd6f, $alpha: 0.7);
     }
 
 }
@@ -110,4 +122,8 @@
     align-items: center;
     gap: 20px;
     overflow: auto;
+  }
+
+  .definition {
+    padding-top: 50px !important;
   }

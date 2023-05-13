@@ -11,7 +11,7 @@ function Modal({ isCorrect, turn, solution, solutionInfo}) {
       setTimer(preState => preState - 1);
     }, 1000);
     setTimeout(() => {
-      window.location.href = 'MiniGame'
+      window.location.href = './Wordle'
     }, 15000)
     // return () => clearInterval(timerId);
   },[])
@@ -29,7 +29,7 @@ function Modal({ isCorrect, turn, solution, solutionInfo}) {
                 <p>You found the solution in {turn} guesses</p>
                 <p className='timer'>Next word in: {timer} seconds</p>
                 <br></br>
-                <a href="MiniGame" >PlayAgain</a>
+                <a href="./Wordle" >PlayAgain</a>
             </div>
         )}
 
@@ -44,7 +44,7 @@ function Modal({ isCorrect, turn, solution, solutionInfo}) {
                 <p>Better luck next time</p>
                 <p className='timer'>Next word in: {timer} seconds</p>
                 <br></br>
-                <a href="MiniGame">PlayAgain</a>
+                <a href="./Wordle">PlayAgain</a>
         </div>
         )}
     </div>

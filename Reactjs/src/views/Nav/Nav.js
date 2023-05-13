@@ -78,5 +78,4 @@ class Nav extends React.Component {
     }
 }
 
-// export default withRouter(Home);
 export default Nav;

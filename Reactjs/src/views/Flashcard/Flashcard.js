@@ -96,18 +96,20 @@ class Flashcard extends React.Component {
     }
 
     handleSaveWord = async (word_id) => {
-        // check login
+        // get user info
         let userResponse = await axios.get(
             `http://localhost:3001/user`,
             { withCredentials: true }
         );
         let user = userResponse.data.user
-
+        console.log(user)
+        console.log("check word: ", word_id)
         try {
             let response = await axios.post(`http://localhost:3001/save-flashcard/`, {
                 "user_id" : user.id,
                 "word_id" : word_id
-            })
+            }, {withCredentials: true})
+            console.log(response)   
             alert(response.data.message)
         } catch (error) {
              alert(error.response.data.error)
@@ -137,87 +139,17 @@ class Flashcard extends React.Component {
                         <div onClick={this.handleClickCard} className="card">
                             {this.soundIcon}
                             <div className='content-front'>{wordEnglish} </div>
-                        </div>
-
-                        <div onClick={this.handleClickCard} className="card">
-                            {this.soundIcon}
                             <div className='wordtype' style={{ color: "black" }}>{wordtype}</div>
                             <div className='wordIPA' style={{ color: "black" }}>{wordIPA}</div>
                             <div className='vietNamese' style={{ color: "black" }}>{vietNameses}</div>
-                            <div className='content-front'>{definitions}</div>
-                        </div>
-                    </ReactCardFlip>
-                    <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
-                        <div onClick={this.handleClickCard} className="card">
-                            {this.soundIcon}
-                            <div className='content-front'>{wordEnglish} </div>
                         </div>
 
                         <div onClick={this.handleClickCard} className="card">
                             {this.soundIcon}
-                            <div className='wordtype' style={{ color: "black" }}>{wordtype}</div>
-                            <div className='wordIPA' style={{ color: "black" }}>{wordIPA}</div>
-                            <div className='vietNamese' style={{ color: "black" }}>{vietNameses}</div>
-                            <div className='content-front'>{definitions}</div>
+                            <div className='content-front-definition'>{definitions}</div>
                         </div>
                     </ReactCardFlip>
-                    <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
-                        <div onClick={this.handleClickCard} className="card">
-                            {this.soundIcon}
-                            <div className='content-front'>{wordEnglish} </div>
-                        </div>
-
-                        <div onClick={this.handleClickCard} className="card">
-                            {this.soundIcon}
-                            <div className='wordtype' style={{ color: "black" }}>{wordtype}</div>
-                            <div className='wordIPA' style={{ color: "black" }}>{wordIPA}</div>
-                            <div className='vietNamese' style={{ color: "black" }}>{vietNameses}</div>
-                            <div className='content-front'>{definitions}</div>
-                        </div>
-                    </ReactCardFlip>
-                    <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
-                        <div onClick={this.handleClickCard} className="card">
-                            {this.soundIcon}
-                            <div className='content-front'>{wordEnglish} </div>
-                        </div>
-
-                        <div onClick={this.handleClickCard} className="card">
-                            {this.soundIcon}
-                            <div className='wordtype' style={{ color: "black" }}>{wordtype}</div>
-                            <div className='wordIPA' style={{ color: "black" }}>{wordIPA}</div>
-                            <div className='vietNamese' style={{ color: "black" }}>{vietNameses}</div>
-                            <div className='content-front'>{definitions}</div>
-                        </div>
-                    </ReactCardFlip>
-                    <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
-                        <div onClick={this.handleClickCard} className="card">
-                            {this.soundIcon}
-                            <div className='content-front'>{wordEnglish} </div>
-                        </div>
-
-                        <div onClick={this.handleClickCard} className="card">
-                            {this.soundIcon}
-                            <div className='wordtype' style={{ color: "black" }}>{wordtype}</div>
-                            <div className='wordIPA' style={{ color: "black" }}>{wordIPA}</div>
-                            <div className='vietNamese' style={{ color: "black" }}>{vietNameses}</div>
-                            <div className='content-front'>{definitions}</div>
-                        </div>
-                    </ReactCardFlip>
-
-                    <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
-                        <div onClick={this.handleClickCard} className="card">
-                            {this.soundIcon}
-                            <div className='content-front'>{wordEnglish} </div>
-                        </div>
-
-                        <div onClick={this.handleClickCard} className="card">
-                            {this.soundIcon}
-                            <div className='wordtype' style={{ color: "black" }}>{wordtype}</div>
-                            <div className='wordIPA' style={{ color: "black" }}>{wordIPA}</div>
-                            <div className='vietNamese' style={{ color: "black" }}>{vietNameses}</div>
-                            <div className='content-front'>{definitions}</div>
-                        </div>
-                    </ReactCardFlip>
+                    
                     </div>
                     
                     <div className="buttonContainer">

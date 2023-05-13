@@ -1,65 +1,66 @@
-body {
-    background: white;
-    bottom: 50px;
-    margin-bottom: 100px;
+// body {
+//     background   : grey;
+//     bottom: 50px;
+//     // padding   : 2rem;
 
-}
+// }
 
-.header {
-    font-family: sans-serif;
-    font-size: 40px;
-}
+// .header {
+//     font-family: sans-serif;
+//     margin-top: 10%;
+//     font-size: 40px;
 
-.topic-header {
-    padding-top: 200px;
-}
+// }
 
-.olcards {
-    margin-bottom: -100px;
-    padding-bottom: 100px;
-    box-sizing: border-box;
-}
+// .olcards{
+//     margin-bottom    : 0;
+//     // padding   : 0;
+//     box-sizing: border-box;
+// }
 
-.olcards {
-    align-items: center;
-    list-style: none;
-    counter-reset: cardCount;
-    font-family: sans-serif;
-    display: flex;
-    --cardsGap: 1rem;
-    gap: var(--cardsGap);
-    padding-bottom: var(--cardsGap);
-}
+// .olcards {
+//     align-items   : center;
+//     list-style    : none;
+//     counter-reset : cardCount;
+//     font-family   : sans-serif;
+//     display       : flex;
+//     --cardsGap    : 1rem;
+//     gap           : var(--cardsGap);
+//     padding-bottom: var(--cardsGap);
 
-.olcards li {
-    counter-increment: cardCount;
-    display: flex;
-    color: black;
-    --labelOffset: 1rem;
-    --arrowClipSize: 1.5rem;
-    margin-top: var(--labelOffset);
-}
+//     .content {
+//         // background-color: bisque;
+//     }
+// }
 
-.olcards li .icon {
-    grid-area: icon;
-    align-self: center;
-    font-size: 1em;
-}
+// .olcards li {
+//     counter-increment: cardCount;
+//     display          : flex;
+//     color            : black;
+//     --labelOffset    : 1rem;
+//     --arrowClipSize  : 1.5rem;
+//     margin-top       : var(--labelOffset);
+// }
 
-.olcards li .content .title {
-    grid-area: title;
-    font-size: 1em;
-    /* font-weight: 700; */
-}
+// .olcards li .icon {
+//     grid-area : icon;
+//     align-self: center;
+//     font-size : 1em;
+// }
 
-.olcards li .content .text {
-    grid-area: text;
-}
+// .olcards li .content .title {
+//     grid-area     : title;
+//     font-size     : 1em;
+//     /* font-weight: 700; */
+// }
 
-ol>li>div>i {
-    height: 10px;
-    width: 20px;
-}
+// .olcards li .content .text {
+//     grid-area: text;
+// }
+// ol > li > div > i {
+//     height: 10px;
+//     width: 20px;
+// }
 
 
 // .olcards li::before {
@@ -75,25 +76,6 @@ ol>li>div>i {
 //     justify-content: center;
 //     align-items    : center;
 //     padding-inline : 0.5em;
-// }
-
-// .olcards li .content {
-//     background-color: var(--cardColor);
-//     --inlinePadding : 1em;
-//     --boxPadding    : 0.5em;
-//     display         : grid;
-//     padding         : var(--boxPadding) calc(var(--inlinePadding) + var(--arrowClipSize)) var(--boxPadding) calc(var(--inlinePadding) + var(--labelOffset));
-//     grid-template-areas:
-//         "icon title"
-//         "icon text";
-//     gap: 0.25em 1em;
-//     clip-path: polygon(0 0,
-//             calc(100% - var(--arrowClipSize)) 0,
-//             100% 50%,
-//             calc(100% - var(--arrowClipSize)) 100%,
-//             calc(100% - var(--arrowClipSize)) calc(100% + var(--cardsGap)),
-//             0 calc(100% + var(--cardsGap)));
-//     position: relative;
 // }
 
 // .olcards li .content::before {
@@ -117,3 +99,10 @@ ol>li>div>i {
 //     left      : 0;
 //     top       : 100%;
 // }
+
+.topicList{
+    width: 100%;
+}
+.topic-title{
+    padding-top: 10%;
+}

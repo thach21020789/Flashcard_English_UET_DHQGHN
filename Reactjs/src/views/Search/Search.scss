@@ -1,69 +1,112 @@
-.search-box {
-    display       : flex;
-    flex-direction: column;
-    align-items   : center;
+.title-search{
+    padding-top: 13%;
+    padding-left: 37% ;
+    font-size: 45px;
+}
+.search-form {
+    display: flex;
+    margin-top: 3%;
+    margin-left:27% ;
+}
 
-    form {
-        input {
-            font-size    : 16px;
-            padding      : 5px;
-            border       : 2px solid #ccc;
-            border-radius: 5px;
-            margin-right : 10px;
-            color        : black;
-            background-color: white;
-        }
-        button {
-            font-size       : 16px;
-            background-color: white;
-            color           : black;
-            // padding: 10px;
-            border          : none;
-            border-radius   : 5px;
-            //transition      : background-color 0.3s ease;
+.word{
+    z-index: 2;
+    padding-left:20px ;
+    border-radius: 10px;
+    width: 60%;
+    height: 40px;
+    color: rgb(2, 2, 236);
+    font-size: large;
+}
 
-            &:hover {
-                background-color: #333;
-            }
-        }
-    }
+button{     
+    margin-left: 5%;
+    width: 150px;
+    height: 40px;
+    border-radius: 40px;
+    background: #fff;
+    border: 1px solid;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    padding: 0;
+}
+
+.result-search{
+    position: relative;
+    border-radius: 10px;
+    margin: 50px 0 0 17% ;
+    background-color: rgb(245, 243, 243);
+    width: 70%;
+    
+}
+
+.result-word{
+    padding: 20px 0 0 75px ;
+    color: orange;
+    font-size: 100px ;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.result-IPA{
+    padding: 0 0 0 100px ;
+    font-size: 30px ;
+    font-style: italic;
+}
+.result-wordtype{
+    padding-right: 20px;
+}
+
+.result-vietnamese{
+    position: absolute;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 50px;
+    top: 60px;
+    right: 15%;
+}
 
 
-    .result-search-box {
-        list-style: none;
-        margin    : 0;
-        padding   : 0;
-        width     : 100%;
-        max-width : 600px;
-        .viet-namese-box {
-            font-size: 16px;
-            top  : 300px;
-            color: black;
-            display: flex;
-            border          : none;
-            border-radius   : 5px;
-            border-radius: 5px solid black;
-            background-color: #66FF66;
-            width: 400px;
-            height: 60px;
-            padding: 20px;
-            box-sizing: border-box;
-            text-align: center;
-            display: flex;
-            justify-content: center;   
-        }
+.result-definition-header{
+    padding: 10px 0 0 0;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+.result-definition{
+    padding: 10px 0 30px 0  ;
+    text-decoration: underline  ;
+    font-size: larger;
+    text-align: center ;
+    
+}
 
+.hide {
+    display: none;
+}
 
-        .definenation-box {
-            font-size       : 16px;
-            color: black;
-            border: 1px solid black;
-            top: 260px;
-            width: 400px;
-            height: 210px;
-            border          : none;
-            border-radius   : 5px;
-            background-color: #66FF66;
-        }
-    }
+.word-suggest:hover{
+    padding-left: 30px;
+    text-decoration: underline;
+    line-height: 30px;
+    cursor: pointer;
+    font-size: 20px ;
+    background-color: rgba(255, 166, 0, 0.365);
+}
+
+.word-suggest{
+    padding-left: 20px;
+    text-decoration: underline;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+.suggestion-box{
+    position: absolute;
+    background-color: #d1d5d0;
+    width: 673px;
+    border-radius: 10px;
+    padding-top: 50px;
+    z-index: 1;
+    display: block;
 }

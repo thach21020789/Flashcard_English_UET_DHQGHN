@@ -13,56 +13,31 @@ function Companion() {
             <div className="tripcard">
                 <CompanionData
                     image={Person1}
-                    heading="I'm ChatGPT" 
-                    text="Hello! I am ChatGPT,
-                    a language model trained by OpenAI.
-                    I am designed to understand natural language and communicate with humans
-                    in a conversational manner.
-                    My purpose is to assist and provide information to users,
-                    as well as engage in conversations on a wide range of topics.
-                    I have access to a vast amount of knowledge and can answer questions on various subjects,
-                    including science, technology, history, and more.
-                    I am always here to help and eager to learn from our interactions."   
+                    heading="Don't be afraid of failure!" 
+                    text="You’ll never be brave if you do not get hurt.
+                    You’ll never learn if you do not make mistakes. 
+                    You’ll never be successful if you do not encounter failure."   
                 />
                 <CompanionData
 
                     image={Person2}
-                    heading="I'm ChatGPT" 
-                    text="Hello! I am ChatGPT,
-                    a language model trained by OpenAI.
-                    I am designed to understand natural language and communicate with humans
-                    in a conversational manner.
-                    My purpose is to assist and provide information to users,
-                    as well as engage in conversations on a wide range of topics.
-                    I have access to a vast amount of knowledge and can answer questions on various subjects,
-                    including science, technology, history, and more.
-                    I am always here to help and eager to learn from our interactions."    
+                    heading="Be careful with everything you do!" 
+                    text="Sow a thought, and you reap an act. 
+                    Sow an act, and you reap a habit. 
+                    Sow a habit, and you reap a character. 
+                    Sow a character, and you reap a destiny."    
                 />
                 <CompanionData
                     image={Person3}
-                    heading="I'm ChatGPT" 
-                    text="Hello! I am ChatGPT,
-                    a language model trained by OpenAI.
-                    I am designed to understand natural language and communicate with humans
-                    in a conversational manner.
-                    My purpose is to assist and provide information to users,
-                    as well as engage in conversations on a wide range of topics.
-                    I have access to a vast amount of knowledge and can answer questions on various subjects,
-                    including science, technology, history, and more.
-                    I am always here to help and eager to learn from our interactions."    
+                    heading="Never stop trying!" 
+                    text="Thomas Edison said that: Genius Is One Percent Inspiration And Ninety-nine Percent Perspiration."    
                 />
                 <CompanionData
                     image={Person3}
-                    heading="I'm ChatGPT" 
-                    text="Hello! I am ChatGPT,
-                    a language model trained by OpenAI.
-                    I am designed to understand natural language and communicate with humans
-                    in a conversational manner.
-                    My purpose is to assist and provide information to users,
-                    as well as engage in conversations on a wide range of topics.
-                    I have access to a vast amount of knowledge and can answer questions on various subjects,
-                    including science, technology, history, and more.
-                    I am always here to help and eager to learn from our interactions."
+                    heading="Thinking to improve!" 
+                    text="An apology has three parts “I’m sorry”, 
+                    “It’s my fault”,and “How can I make things better”. 
+                    The last part is most important."
                 />
             </div>
         </div>

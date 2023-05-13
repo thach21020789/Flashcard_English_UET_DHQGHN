@@ -6,7 +6,7 @@ import axios from 'axios';
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import { useHistory } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
-class SavedFlashcard extends React.Component {
+class Flashcard extends React.Component {
 
     constructor(props) {
         super(props);
@@ -14,9 +14,8 @@ class SavedFlashcard extends React.Component {
             indexWord: 0,
             hovered: false,
             vietNamese: "",
-            words: [
-                {}
-            ]
+            words: [{}],
+            isFlipped: false
         }
         this.handleMouseOver = this.handleMouseOver.bind(this);
         this.handleMouseOut = this.handleMouseOut.bind(this);
@@ -42,7 +41,6 @@ class SavedFlashcard extends React.Component {
             { withCredentials: true }
         );
 
-        console.log(res)
         this.setState({
             words: res.data
         })
@@ -62,16 +60,19 @@ class SavedFlashcard extends React.Component {
         this.setState({
             isFlipped: !this.state.isFlipped
         })
+        console.log(this.state.isFlipped)
     }
 
-    handleToPlaySound = () => {
+    handleToPlaySound = (event) => {
         const { indexWord, words } = this.state;
         const utterance = new SpeechSynthesisUtterance();
         utterance.text = words[indexWord].word;
         window.speechSynthesis.speak(utterance);
+        event.stopPropagation()
     }
     handleNextWord = () => {
 
+        
         let tmp = this.state.indexWord;
         if (this.state.indexWord < this.state.words.length - 1) {
             this.setState({
@@ -90,8 +91,9 @@ class SavedFlashcard extends React.Component {
         } 
     }
 
+
     soundIcon = (
-        <div className='volum' onClick={() => this.handleToPlaySound()}>
+        <div className='volum' onClick={(event) => this.handleToPlaySound(event)}>
             <img src="https://ngoaingu24h.vn/resources/images/new/sound.svg"></img>
         </div>
     );
@@ -107,20 +109,24 @@ class SavedFlashcard extends React.Component {
         return (
             <>
                 <div className='card-container'>
-                    <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
+                    <div className="card-list">
+                        <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
                         <div onClick={this.handleClickCard} className="card">
                             {this.soundIcon}
                             <div className='content-front'>{wordEnglish} </div>
+                            <div className='wordtype' style={{ color: "black" }}>{wordtype}</div>
+                            <div className='wordIPA' style={{ color: "black" }}>{wordIPA}</div>
+                            <div className='vietNamese' style={{ color: "black" }}>{vietNameses}</div>
                         </div>
 
                         <div onClick={this.handleClickCard} className="card">
                             {this.soundIcon}
-                            <div className='wordtype' style={{ color: "black" }}>{wordtype}</div>
-                            <div className='wordIPA' style={{ color: "black" }}>{wordIPA}</div>
-                            <div className='vietNamese' style={{ color: "black" }}>{vietNameses}</div>
-                            <div className='content-front'>{definitions}</div>
+                            <div className='content-front-definition'>{definitions}</div>
                         </div>
                     </ReactCardFlip>
+                    
+                    </div>
+                    
                     <div className="buttonContainer">
 
                         <button type='button' className={`buttonPreviousWord ${this.state.indexWord > 0 ? "" : "click-disable"}`} onClick={() => this.handlePreviousWord()}
@@ -141,4 +147,4 @@ class SavedFlashcard extends React.Component {
     }
 }
 
-export default withRouter(SavedFlashcard);
+export default withRouter(Flashcard);

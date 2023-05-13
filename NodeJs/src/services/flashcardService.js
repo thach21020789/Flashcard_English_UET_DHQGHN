@@ -41,13 +41,14 @@ let getVocabByCategoryAndDifficulty = (category, difficulty) => {
 let getVocabService = (word) => {
     return new Promise( (resolve, reject) => {
         try {
+            word = "%" + word + "%"
             DBconnection.query(
-                "SELECT * FROM entries WHERE word = ? GROUP BY word;", [word],
+                "SELECT * FROM entries WHERE word LIKE(?) GROUP BY word ORDER BY LENGTH(word) ASC LIMIT 10;", [word],
                 function(err, rows) {
                     if (err) {
                         reject(err)
                     } else {
-                        resolve (rows[0])
+                        resolve (rows)
                     }
                 }
             );

@@ -1,17 +1,22 @@
 import './App.scss';
-import Flashcard from './Flashcard/Flashcard';
-import Nav from './Nav/Nav.js';
-import Home from './Home/Home';
-import MiniGame from './MiniGames/MiniGame';
-import Search from './Search/Search';
+
 import Login from './Admins/Login/Login';
-import Level from  "./Flashcard/Levels/Level";
-import TopicList from  "./Flashcard/Levels/TopicList";
 import Register from './Admins/Register/Register';
 import ForgotPassword from './Admins/ForgotPassword/ForgotPassword';
 import ResetPassword from './Admins/ForgotPassword/ResetPassword';
-import User from './Admins/User/User'
-import SavedFlashcard from './Admins/User/SavedFlashcard';
+// import User from './Admins/User/User';
+import Flashcard from './Flashcard/Flashcard';
+import Home from './Home/Home';
+import ChooseGame from './MiniGames/ChooseGame';
+import Quiz from './MiniGames/Quiz/components/MultipleChoice';
+import quizSumary from './MiniGames/Quiz/components/QuizSummary';
+import Wordle from './MiniGames/Wordle/MiniGame';
+import Nav from './Nav/Nav.js';
+import Search from './Search/Search';
+import Level from "./Flashcard/Levels/Level";
+import TopicList from "./Flashcard/Levels/TopicList";
+import User from "./Admins/User/User"
+import SavedFlashcard from "./Admins/User/SavedFlashcard"
 
 import {
   BrowserRouter,
@@ -46,34 +51,32 @@ function App() {
 
             <Nav></Nav>
             <div className="App">
-              <header className="App-header">
-                <Switch>
-                  <Route path="/Home" exact>
-                    <Home></Home>
-                  </Route>
-                  <Route path="/MiniGame" exact>
-                    <MiniGame></MiniGame>
-                  </Route>
-                  <Route path="/Flashcard" exact>
-                    <Level></Level>
-                  </Route>
-                  <Route path="/Level" exact>
-                    <TopicList></TopicList>
-                  </Route>
-                  <Route path="/mainFlashcard" exact>
-                    <Flashcard></Flashcard>
-                  </Route>
-                  <Route path="/Search" exact>
-                    <Search></Search>
-                  </Route>
-                  <Route path="/User" exact>
-                    <User></User>
-                  </Route>
-                  <Route path="/User/Collection" exact>
-                    <SavedFlashcard></SavedFlashcard>
-                  </Route>
-                </Switch>
-              </header>
+              <Switch>
+                <Route path="/Home" exact component={Home} />
+                <Route path="/MiniGame" exact component={ChooseGame} />
+                <Route path="/MiniGame/Wordle" exact component={Wordle} />
+                <Route path="/MiniGame/Quiz" exact component={Quiz} />
+                <Route path="/MiniGame/Quiz/quizSumary" exact component={quizSumary} />
+                <Route path="/Flashcard" exact>
+                  <Level></Level>
+                </Route>
+                <Route path="/Level" exact>
+                  <TopicList></TopicList>
+                </Route>
+                <Route path="/mainFlashcard" exact>
+                  <Flashcard></Flashcard>
+                </Route>
+                <Route path="/Search" exact>
+                  <Search></Search>
+                </Route>
+                <Route path="/User" exact>
+                  <User></User>
+                </Route>
+                <Route path="/User/Collection" exact>
+                  <SavedFlashcard></SavedFlashcard>
+                </Route>
+                <Route path="/" exact component={Home} />
+              </Switch>
             </div>
           </Route>
         </Switch>
@@ -83,3 +86,6 @@ function App() {
 }
 
 export default App;
+
+
+

@@ -1,0 +1,122 @@
+.quiz-summary {
+    text-align: center;
+}
+    span.success-icon {
+            
+        color: green;
+        font-size: $xxlg;
+    }
+
+    .Quiz-title {
+        text-align: center;
+        font-size: $lg;
+        margin-top: -$sm;
+        color: blueviolet;
+        
+    }
+
+    .advice{
+        color: black;
+        font-style: italic;
+    }
+
+
+
+
+    .Info-quiz-sum{
+        text-align: left;
+        margin-top: 3em;
+        
+        margin-left: 25%;
+        padding:2%;
+        border: 3px solid black ;
+        line-height: 2em;
+        background-color:rgb(243, 235, 235);
+        width: 50%;
+        color: black;
+        font-weight: 300;
+        
+    }
+
+    .stat-right{
+        position: absolute;
+        right: 27%;
+    }
+
+
+    section ul {
+        margin-top: 4em;
+        text-align: center;
+    }
+
+    section ul li {
+        display: inline-block;
+    }
+
+    section ul li a {
+        
+        color: black;
+        text-decoration: underline;
+        padding: $sm !important;
+    }
+
+    section ul li a:hover {
+        color: $off-white;
+        text-decoration: none;
+    }
+
+    section ul li:first-child {
+        border: 1px solid;
+        padding: 3px;
+        background-color: white;
+        border-radius:10px ;
+        margin-right: 100px;
+        transition: 0.3s linear all;
+    }
+
+    section ul li:first-child:hover {
+        background-color: black;
+    }
+
+    section ul li:last-child {
+        border: 1px solid;
+        padding: 3px;
+        background-color: white ;    
+        border-radius: 10px ;
+        transition: 0.3s linear all;
+    }
+
+    section ul li:last-child:hover {
+        background-color: black;
+    }
+
+    section ul li:last-child a {
+        color: black;
+    }
+
+    section ul li:last-child a:hover {
+        color: $off-white;
+    }
+
+    .no-stats {
+        color: $off-black;
+        margin: $xxlg auto;
+    }
+
+
+
+
+@media (max-width: $md-breakpoint) {
+    .quiz-summary {
+        font-size: $sm;
+        padding-left: $xs;
+        padding-right: $xs;
+    }
+
+    div.container.stats {
+        margin: 0;
+        padding: $sm;
+        max-width: 100%;
+        width: 100%;
+    }
+}

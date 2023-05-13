@@ -1,54 +1,82 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
-  font-family: 'poppins', sans-serif;
-}
 
-
-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+.form-login {
+  height: 100vh;
   width: 100%;
-
-  background: url('../../assets/img/background6.jpg')no-repeat;
+  background: White;
   background-position: center;
   background-size: cover;
+  position: relative;
+  
 }
 
-.form-box {
+.page-title{
   position: relative;
+  top: 30%;
+  margin-left: 10%;
+ 
+  
+  
+  .name-pj{
+    font-size: 4em;
+    // font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  .slogan{
+    padding-top: 30px ;
+    font-size: 1.2em;
+    font-family: 'Courier New', Courier, monospace;
+    font-style: italic;
+  }
+
+}
+
+.form-box-login {
+  position: absolute;
+  right: 10%;
+  top: 18%;
   min-width: 400px;
   max-width: fit-content;
   height: 450px;
-  background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.5);
+  background: #262323;
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
-  backdrop-filter: blur(15px);
+
+
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
 
-
-h2 {
+.login-title {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 2em;
   color: #fff;
   text-align: center;
 }
 
-.inputbox {
+
+.value-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
+.inputbox-login {
   position: relative;
   margin: 30px 0;
   width: 310px;
   border-bottom: 2px solid #fff;
+  
 }
 
-.inputbox label {
+.inputbox-login label {
   position: absolute;
   top: 50%;
   left: 5px;
@@ -61,10 +89,11 @@ h2 {
 
 input:focus~label,
 input:valid~label {
-  top: -5px;
+  top: -10px;
 }
 
-.inputbox input {
+.inputbox-login input {
+  border-radius: 10px;
   width: 100%;
   height: 50px;
   background: transparent;
@@ -75,7 +104,7 @@ input:valid~label {
   color: #fff;
 }
 
-.inputbox ion-icon {
+.inputbox-login ion-icon {
   position: absolute;
   right: 8px;
   color: #fff;
@@ -83,7 +112,7 @@ input:valid~label {
   top: 20px;
 }
 
-.forget {
+.forget-login {
   margin: -15px 0 15px;
   font-size: .9em;
   color: #fff;
@@ -91,17 +120,16 @@ input:valid~label {
   justify-content: space-between;
 }
 
-.forget label input {
+.forget-login label input {
   margin-right: 3px;
-
 }
 
-.forget label a {
+.forget-login label a {
   color: #fff;
   text-decoration: none;
 }
 
-.forget label a:hover {
+.forget-login label a:hover {
   text-decoration: underline;
 }
 
@@ -117,20 +145,20 @@ button {
   font-weight: 600;
 }
 
-.register {
+.register-login {
   font-size: .9em;
   color: #fff;
   text-align: center;
   margin: 25px 0 10px;
 }
 
-.register p a {
+.register-login p a {
   text-decoration: none;
   color: #fff;
   font-weight: 600;
 }
 
-.register p a:hover {
+.register-login p a:hover {
   text-decoration: underline;
 }
 
@@ -140,10 +168,8 @@ button {
 }
 
 
-.value-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+
+
+
+
+

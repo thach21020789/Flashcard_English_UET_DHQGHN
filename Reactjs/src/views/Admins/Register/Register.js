@@ -26,38 +26,38 @@ const Register = () => {
     };
 
     return (
-            <section className="login-form" onSubmit={handleSubmit}>
-                <div className="form-box">
-                    <div className="form-value">
-                        <form action className='value-container'>
-                            <h2>Register</h2>
-                            {error && <div className="error">{error}</div>}
-                            <div className="inputbox">
-                                <input type="text" id="fullName" required value={fullName} onChange={(e) => setFullName(e.target.value)} />
-                                <label htmlFor="fullName">fullName</label>
-                            </div>
-                            <div className="inputbox">
-                                <input type="email" id="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
-                                <label htmlFor="email">Email</label>
-                            </div>
-                            <div className="inputbox">
-                                <input type="password" id="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
-                                <label htmlFor="password">Password</label>
-                            </div>
-                            <div className="inputbox">
-                                <input type="password" id="confirmedPassword" required value={confirmedPassword} onChange={(e) => setConfirmedPassword(e.target.value)} />
-                                <label htmlFor="confirmedPassword">Confirmed password</label>
-                            </div>
-                            <button type="submit">Log in</button>
-                            <div className="register">
-                                <p>
-                                    Already have an account ? <a href="http://localhost:3000/login">Log in</a>
-                                </p>
-                            </div>
-                        </form>
-                    </div>
+        <section className="register-form" onSubmit={handleSubmit}>
+            <div className="form-box">
+                <div className="form-value">
+                    <form action className='value-container'>
+                        <h2 className='register-header'>Register</h2>
+                        {error && <div className="error">{error}</div>}
+                        <div className="inputbox">
+                            <input type="text" id="fullName" required value={fullName} onChange={(e) => setFullName(e.target.value)} />
+                            <label htmlFor="fullName">fullName</label>
+                        </div>
+                        <div className="inputbox">
+                            <input type="email" id="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
+                            <label htmlFor="email">Email</label>
+                        </div>
+                        <div className="inputbox">
+                            <input type="password" id="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
+                            <label htmlFor="password">Password</label>
+                        </div>
+                        <div className="inputbox">
+                            <input type="password" id="confirmedPassword" required value={confirmedPassword} onChange={(e) => setConfirmedPassword(e.target.value)} />
+                            <label htmlFor="confirmedPassword">Confirmed password</label>
+                        </div>
+                        <button type="submit">Log in</button>
+                        <div className="register">
+                            <p>
+                                Already have an account ? <a href="http://localhost:3000/login">Log in</a>
+                            </p>
+                        </div>
+                    </form>
                 </div>
-            </section>
+            </div>
+        </section>
     );
 };
 

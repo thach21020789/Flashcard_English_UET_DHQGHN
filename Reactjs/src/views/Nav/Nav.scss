@@ -14,8 +14,12 @@
   left: 50%;
   transform: translate(-50%);
   z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
 }
-
+.NavbarItems:hover {
+  opacity: 1;
+}
 .NavbarItems > a > h1 {
   margin-bottom: 0;
 }

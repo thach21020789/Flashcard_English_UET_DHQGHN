@@ -5,30 +5,29 @@ import Keyboard from './Keyboard';
 import Modal from './Modal';
 
 function Wordle( {solution, solutionInfo}) {
-    const {currentGuess, handleKeyup, guesses, isCorrect, turn, usedKeys, handleKeyDown, error} = useWordle(solution);
+    const {currentGuess, handleKeyup, guesses, isCorrect, turn, usedKeys, error} = useWordle(solution);
     const [showModal, setShowModal] = useState(false); 
 
     useEffect (() => {
-      window.addEventListener('keyup', handleKeyDown)
+      // window.addEventListener('keyup', handleKeyDown)
         window.addEventListener('keyup', handleKeyup);
 
         if (isCorrect) {
           setTimeout(() => {
-            setShowModal(true, 10000)
-          })
+            setShowModal(true)
+          }, 2000)
           window.removeEventListener('keyup', handleKeyup);
         }
         if (turn > 5 && !isCorrect) {
             setTimeout(() => {
-            setShowModal(true, 200)
-          }) 
+            setShowModal(true)
+          }, 2000) 
             window.removeEventListener('keyup', handleKeyup);
         }
         
         return () => window.removeEventListener('keyup', handleKeyup);
-    }, [handleKeyup, isCorrect, turn, handleKeyDown]);
+    }, [handleKeyup, isCorrect, turn]);
 
-   
   return (
     <>  
         {error && <div className="error">{error}</div>}

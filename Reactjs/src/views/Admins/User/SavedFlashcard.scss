@@ -3,7 +3,7 @@
     border: 30px solid white;
     margin-top: 100px;
     display: flex;
-    justify-content: center;
+    // justify-content: center;
 
     .card {
         background-color: #EEEEEE;
@@ -11,7 +11,7 @@
         border-radius: 10px;
         box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.25);
         padding: 10px;
-        width: 350px;
+        width: 360px;
         height: 500px;
         display: flex;
         justify-content: center;
@@ -21,7 +21,7 @@
 
         .volum {
             cursor: pointer;
-            position: absolute;
+            position: fixed;
             top: 0px;
             left: 0px;
         }
@@ -34,6 +34,8 @@
             color: black;
             font-size: 18px;
             font-weight: 600;
+            position: absolute;
+            margin-top: 20%;
         }
 
         .vietNamese {
@@ -41,7 +43,6 @@
             font-weight: 600;
             color: black;
             position: absolute;
-            top: 80px;
         }
 
         .wordtype {
@@ -49,7 +50,7 @@
             font-weight: 600;
             color: black;
             position: absolute;
-            top: 120px;
+            top: calc(20% + 20%);            
         }
 
         .wordIPA {
@@ -57,23 +58,28 @@
             font-weight: 600;
             color: black;
             position: absolute;
-            top: 150px;
+            top : calc(20% + 20% + 10%);
         }
-
+        .content-front-definition {
+            position: relative;
+            font-size: 18px;
+        }
     }
-
-
-
 }
-
+.card {
+    width: 360px;
+}
 .buttonContainer {
     position: absolute;
     bottom: 0;
+    top: 630px;
+
 
     .buttonPreviousWord, .buttonSaveWord, .buttonNextWord  {
         position: relative;
         width: 200px;
-        background-color: rgba($color: #e4dd6f, $alpha: 1.0)
+        background-color: rgba($color: #e4dd6f, $alpha: 1.0);
+        margin: 0px;
     }
 
     .buttonPreviousWord {
@@ -94,7 +100,8 @@
     }
 
     .buttonPreviousWord:hover, .buttonSaveWord:hover, .buttonNextWord:hover {
-        background-color: rgba($color: #e4dd6f, $alpha: 0.7)
+        margin: 0px;
+        background-color: rgba($color: #e4dd6f, $alpha: 0.7);
     }
 
 }
@@ -105,3 +112,12 @@
 .click-disable:hover {
     background-color: lightgray !important;
 }
+
+.card-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    overflow: auto;
+  }

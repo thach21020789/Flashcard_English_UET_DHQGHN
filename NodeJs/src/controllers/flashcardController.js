@@ -14,7 +14,6 @@ let getVocabByCD = async (req, res) => {
 }
 
 let getVocab = async (req, res) => {
-    console.log(req.params.word)
     return res.status(200).json(
         await flashcardService.getVocabService(req.params.word)
     )

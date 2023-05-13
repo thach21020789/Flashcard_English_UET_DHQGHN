@@ -3,7 +3,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
+  background: #fff;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -46,15 +46,19 @@
 
 .form-container button[type="submit"] {
   display: block;
-  width: 100%;
-  padding: 10px;
-  background-color: #4CAF50;
-  color: #fff;
+  width: 90%;
+  // padding: 10px;
+  background-color: rgb(95, 225, 95);
+  color: black;
   border: none;
   border-radius: 3px;
   cursor: pointer;
+  right: 2px;
 }
 
+.form-container button:hover {
+  background:darken($color: rgb(95, 225, 95), $amount: 20%) ;
+}
 .form-container h2 {
   color: black;
 }

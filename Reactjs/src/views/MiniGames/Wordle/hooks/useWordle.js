@@ -75,11 +75,11 @@ const useWordle = (solution) => {
         setError('')
     } 
 
-    const handleKeyDown = ({key}) => { 
-        if (key === 'Enter') {
-            return
-        }
-    }
+    // const handleKeyDown = ({key}) => { 
+    //     if (key === 'Enter') {
+    //         return
+    //     }
+    // }
     //handle keyup event & track current guess
     //if user presses enter, add the new guess
     const handleKeyup = ({key}) => {
@@ -89,18 +89,18 @@ const useWordle = (solution) => {
         if (key === "Enter") {
             //only add guess if turn is more than 5
             if (turn > 5) {
-                setError('you used all your guesses')
+                setError('You used all your guesses')
                 return;
             }
             //don't allow duplicate words
             if (history.includes(currentGuess)) {
-                setError('you already tried that word');
+                setError('You\'ve already tried that word');
                 return;
             }
 
             //check word is 5 chars long
             if (currentGuess.length !== 5) {
-                setError('word must be 5 chars long')
+                setError('Word must be 5 chars long')
                 return;
             }
             const formatted = formatGuess();
@@ -120,6 +120,6 @@ const useWordle = (solution) => {
         }
     }
 
-    return {turn, currentGuess, guesses, isCorrect,usedKeys, handleKeyup, handleKeyDown, error};
+    return {turn, currentGuess, guesses, isCorrect,usedKeys, handleKeyup, error};
 }
 export default useWordle;
