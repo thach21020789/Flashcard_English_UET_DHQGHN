@@ -55,7 +55,6 @@ function User() {
         }
     };
 
-
     return (
         <>
             <div><Helmet><title>User</title></Helmet>
