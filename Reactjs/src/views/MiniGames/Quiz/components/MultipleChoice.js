@@ -39,6 +39,18 @@ class MultipleChoice extends Component {
     }
 
     async componentDidMount() {
+
+        // check login
+        let checkAuth = await axios.get(
+            `http://localhost:3001/user`,
+            { withCredentials: true }
+        );
+        let user = checkAuth.data.user;
+        if (!user) {
+            this.props.history.push("/login");
+        }
+
+        
         let { questions, currentQuestion, nextQuestion, previousQuestion } = this.state;
         let result = await axios.get(`http://localhost:3001/search-random-quiz`);
         questions = result.data;
