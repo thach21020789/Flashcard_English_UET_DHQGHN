@@ -4,12 +4,15 @@
     margin-top: 100px;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+    user-select: none;
 
     .card {
         background-color: #EEEEEE;
         border: 1px solid black;
         border-radius: 10px;
-        box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.25);
         padding: 10px;
         width: 360px;
         height: 500px;
@@ -18,7 +21,7 @@
         align-items: center;
         text-align: center;
         font-size: 24px;
-
+        flex-direction: column;
 
         .volum {
             cursor: pointer;
@@ -61,12 +64,14 @@
             position: absolute;
             top: 150px;
         }
+
         .content-front-definition {
             position: relative;
             font-size: 18px;
         }
     }
 }
+
 .card {
     width: 360px;
 }
@@ -74,56 +79,61 @@
 .buttonContainer {
     position: absolute;
     bottom: 0;
-    top: 800px;
+    top: 650px;
 
 
-    .buttonPreviousWord, .buttonSaveWord, .buttonNextWord  {
+
+    .buttonSaveWord, .buttonFlip{
         position: relative;
         width: 200px;
         background-color: rgba($color: #e4dd6f, $alpha: 1.0);
         margin: 0px;
     }
 
-    .buttonPreviousWord {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-    }
-    
-    .buttonSaveWord {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-    }
-
-    .buttonNextWord {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-    }
-
-    .buttonPreviousWord:hover, .buttonSaveWord:hover, .buttonNextWord:hover {
+    .buttonSaveWord:hover, .buttonFlip:hover {
         margin: 0px;
         background-color: rgba($color: #e4dd6f, $alpha: 0.7);
     }
 
 }
 
-.click-disable {
-    background-color:lightgray !important;
+.buttonSaveWord {
+    position: relative;
+    width: 200px;
+    background-color: rgba($color: #e4dd6f, $alpha: 1.0);
+    margin: 0px;
 }
+
+.buttonSaveWord:hover {
+    margin: 0px;
+    background-color: rgba($color: #e4dd6f, $alpha: 0.7);
+}
+
+.click-disable {
+    background-color: lightgray !important;
+}
+
 .click-disable:hover {
     background-color: lightgray !important;
 }
 
 .card-list {
     display: flex;
-    flex-wrap: wrap;
+    position: relative;
     justify-content: center;
-    align-items: center;
-    gap: 20px;
-    overflow: auto;
-  }
+}
 
-  .definition {
+.definition {
     padding-top: 50px !important;
-  }
+}
+
+.TinderCard {
+    position: absolute;
+}
+
+
+//   @for $i from 1 through 100 {
+//     .TinderCard:nth-child(#{$i}) {
+//       z-index: #{$i};
+//     }
+//   }

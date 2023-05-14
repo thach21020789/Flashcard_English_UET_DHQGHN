@@ -9,9 +9,6 @@ import buttonSound from '../audio/button-sound.mp3';
 import axios from 'axios';
 import '../style/styles.scss';
 import '../../../../../node_modules/@mdi/font/css/materialdesignicons.min.css';
-// import '../../../../../node_modules/materialize-css/dist/css/materialize.min.css';
-// import '../../../../../node_modules/materialize-css/dist/js/materialize.min.js'; 
-
 
 
 class MultipleChoice extends Component {
@@ -79,7 +76,7 @@ class MultipleChoice extends Component {
     };
 
     handleOptionClick = (e) => {
-    
+
         if (e.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()) {
             this.correctTimeout = setTimeout(() => {
                 this.correctSound.current.play();
@@ -305,7 +302,7 @@ class MultipleChoice extends Component {
                     </div>
                     <div className="timer-container">
                         <p>
-                            <span className="left" style={{ float: 'left' }}>{currentQuestionIndex + 1} of {numberOfQuestions}</span>
+                            <span className="left">{currentQuestionIndex + 1} of {numberOfQuestions}</span>
                         </p>
                         <p>
                             <span className={classnames('right valid', {

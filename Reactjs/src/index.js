@@ -5,11 +5,8 @@ import reportWebVitals from './reportWebVitals';
 import './styles/global.scss';
 
 
-
 ReactDOM.render(
   <React.StrictMode>
-    {/* <Login></Login> */}
-
     <App />
   </React.StrictMode>,
   document.getElementById('root')

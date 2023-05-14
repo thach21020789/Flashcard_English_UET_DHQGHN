@@ -9,14 +9,14 @@ class Search extends Component {
 
         this.state = {
             word: '',
-            result: '',
-            error: '',
+            result: {
+            },
             susggest: [{}],
             isTyping: false
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
-        // this.handleShowSuggestion = this.handleShowSuggestion.bind(this);
+        this.handleToPlaySound = this.handleToPlaySound.bind(this);
     }
 
 
@@ -36,7 +36,6 @@ class Search extends Component {
 
     async handleSubmit(event) {
         event.preventDefault();
-        console.log("check result before get: ", this.state.result)
         try {
             const response = await axios.get(`http://localhost:3001/search/${this.state.word}`,
                 { withCredentials: true });
@@ -45,25 +44,20 @@ class Search extends Component {
 
         } catch (error) {
             console.log(error.data)
-            this.setState({ error: error.data.error });
+
         }
-        console.log("result: ", this.state.result)
     }
 
     async handleShowSuggestion(word) {
-        let susggest = this.state.susggest;
-        console.log("word check: ", word)
         try {
             const response = await axios.get(`http://localhost:3001/search/${word}`,
                 { withCredentials: true });
             this.setState({ susggest: response.data });
         } catch (error) {
             console.log(error.data)
-            // this.setState({ error: error.data.error });  
         }
     }
     async handleChooseWord(choosedWord) {
-        console.log("check result before get: ", this.state.result)
         try {
             const response = await axios.get(`http://localhost:3001/search/${choosedWord}`,
                 { withCredentials: true });
@@ -73,12 +67,10 @@ class Search extends Component {
             console.log(error)
             this.setState({ error: error });
         }
-        console.log("result: ", this.state.result)
     }
 
     async handleOnBlur(event) {
         if (event) {
-            console.log("blur", this.state.isTyping);
             this.setState({ isTyping: false })
             event.stopPropagation();
         }
@@ -90,18 +82,52 @@ class Search extends Component {
     async handleOnFocus(event) {
         if (event) {
             this.setState({ isTyping: true });
-            console.log("focus", this.state.isTyping);
             event.stopPropagation();
         }
     }
 
+    async handleToPlaySound(event, word) {
+        console.log("check word ", word)
+        const utterance = new SpeechSynthesisUtterance();
+        utterance.text = word;
+        window.speechSynthesis.speak(utterance);
+        event.stopPropagation()
+    }
+
+
+
+
     render() {
         const { word, result, susggest } = this.state;
+        let status;
 
+        if (result !== undefined) {
+            status = (
+                <div>
+                    {result && result.word && <span className="result-word">{result.word}</span>}
+                    {result && result.wordtype && <span className="result-wordtype">({result.wordtype}) </span>}
+                    {result && result.vietnamese && <span className="result-vietnamese">{result.vietnamese}</span>}
+                    {
+                        result && result.word && <span className='sound-icon-container'>
+                            <img className='sound-icon-search' src="https://ngoaingu24h.vn/resources/images/new/sound.svg" onClick={(event) => this.handleToPlaySound(event, result.word)}></img>
+                        </span>
+                    }
+                    {result && result.IPA && <div className="result-IPA">{result.IPA}</div>}
+                    {result && result.definition && <div className="result-definition-header">Definition:</div>}
+                    {result && result.definition && <div className="result-definition">{result.definition}</div>}
+                </div>
+            );
+        } else {
+            status = (
+                <div className='CantSolve'>
+                    Can't look up your word in our dictionary
+                </div>
+
+            )
+        }
 
         return (
             <div>
-
                 <div onClick={(e) => { this.handleOnBlur(e) }}>
                     <h1 className='title-search' >Search your word</h1>
                     <form className='search-form' onSubmit={this.handleSubmit} >
@@ -119,21 +145,18 @@ class Search extends Component {
                                 })
                             }
                         </div>}
-
-
                     </form>
                     <div className='result-search'>
-                        {result && result.word && <span className="result-word">{result.word}</span>}
-                        {result && result.wordtype && <span className="result-wordtype">({result.wordtype}) </span>}
-                        {result && result.vietnamese && <span className="result-vietnamese">{result.vietnamese}</span>}
-                        {result && result.IPA && <div className="result-IPA">{result.IPA}</div>}
-                        {result && result.definition && <div className="result-definition-header">Definition:</div>}
-                        {result && result.definition && <div className="result-definition">{result.definition}</div>}
+                        {status}
                     </div>
                 </div>
             </div>
         );
     }
+
+
+
+
 }
 
 export default withRouter(Search);

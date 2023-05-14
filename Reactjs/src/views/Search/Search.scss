@@ -38,8 +38,8 @@ button{
     border-radius: 10px;
     margin: 50px 0 0 17% ;
     background-color: rgb(245, 243, 243);
-    width: 70%;
-    
+    width: 70%;   
+    min-height: 17em;
 }
 
 .result-word{
@@ -110,3 +110,20 @@ button{
     z-index: 1;
     display: block;
 }
+
+.sound-icon-search{
+    width: 2%;
+    height: 2%;
+    cursor: pointer;
+}
+
+.CantSolve{
+  position: absolute;
+  font-size: 1.55rem;
+  top: 30%;    
+  left: 28%;
+  font-family: 'Times New Roman', Times, serif;
+  color: red;
+}
+
+

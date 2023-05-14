@@ -43,7 +43,7 @@ let getVocabService = (word) => {
         try {
             word = "%" + word + "%"
             DBconnection.query(
-                "SELECT * FROM entries WHERE word LIKE(?) GROUP BY word ORDER BY LENGTH(word) ASC LIMIT 10;", [word],
+                "SELECT * FROM entries WHERE word LIKE(?) GROUP BY word ORDER BY LENGTH(word), word ASC LIMIT 10;", [word],
                 function(err, rows) {
                     if (err) {
                         reject(err)
@@ -78,6 +78,7 @@ let getRandomVocabService = () => {
 };
 
 let saveFlashcardService= (user_id, word_id) => {
+    console.log("check at save flashcard service before return promise: ", user_id, word_id)
     return new Promise( (resolve, reject) => {
         try {
             DBconnection.query(
@@ -87,6 +88,7 @@ let saveFlashcardService= (user_id, word_id) => {
                         reject(err)
                     } else {
                         if (rows[0].flashcard_status == "Free to save") {
+                            console.log("check at save flashcard service: ", user_id, word_id)
                             DBconnection.query(
                                 `INSERT INTO flashcard_storage SET id = ?, word_id = ?`, [user_id, word_id], function(err, rows) {
                                     if (err) {

@@ -4,7 +4,6 @@ import Login from './Admins/Login/Login';
 import Register from './Admins/Register/Register';
 import ForgotPassword from './Admins/ForgotPassword/ForgotPassword';
 import ResetPassword from './Admins/ForgotPassword/ResetPassword';
-// import User from './Admins/User/User';
 import Flashcard from './Flashcard/Flashcard';
 import Home from './Home/Home';
 import ChooseGame from './MiniGames/ChooseGame';
@@ -17,6 +16,7 @@ import Level from "./Flashcard/Levels/Level";
 import TopicList from "./Flashcard/Levels/TopicList";
 import User from "./Admins/User/User"
 import SavedFlashcard from "./Admins/User/SavedFlashcard"
+import { Helmet } from 'react-helmet';
 
 import {
   BrowserRouter,
@@ -28,7 +28,7 @@ import {
 function App() {
   return (
     <>
-      { }
+      <Helmet><title>Flashcard</title></Helmet>
       <BrowserRouter>
         <Switch>
           <Route path="/login" exact>
