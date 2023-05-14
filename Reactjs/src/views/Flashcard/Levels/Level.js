@@ -1,6 +1,9 @@
 import React from "react";
 import "./Level.scss";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
+import { Helmet } from 'react-helmet';
+
+
 class Level extends React.Component {
     constructor(props) {
         super(props);
@@ -40,28 +43,29 @@ class Level extends React.Component {
 
     render() {
         return (
-            // <div> Hello</div>
-            <div className="topic">
-                <div className="topic-title">Choose level</div>
-                <ol className="topic-container">
-                    <li style={{ accent: "#0D6EFD" }} className="easy-word" onClick={() => this.handleEasyLevel()}>
-                        <div class="icon"><i class="fa-regular fa-face-smile"></i></div>
-                        <div class="title">EASY</div>
-                        <div class="descr">The lowest level</div>
-                    </li>
+            <><Helmet><title>Level</title></Helmet>
+                <div className="topic">
+                    <div className="topic-title">Choose level</div>
+                    <ol className="topic-container">
+                        <li style={{ accent: "#0D6EFD" }} className="easy-word" onClick={() => this.handleEasyLevel()}>
+                            <div class="icon"><i class="fa-regular fa-face-smile"></i></div>
+                            <div class="title">EASY</div>
+                            <div class="descr">The lowest level</div>
+                        </li>
 
-                    <li style={{ accent: "#0D6EFD" }} className="normal-word" onClick={() => this.handleNormalLevel()}>
-                        <div class="icon"><i class="fa-regular fa-face-rolling-eyes"></i></div>
-                        <div class="title">MEDIUM</div>
-                        <div class="descr">The medium level</div>
-                    </li>
-                    <li style={{ accent: "#0D6EFD" }} className="hard-word" onClick={() => this.handleNormalLevel()}>
-                        <div class="icon"><i class="fa-regular fa-face-angry"></i></div>
-                        <div class="title">HARD</div>
-                        <div class="descr">The highest level</div>
-                    </li>
-                </ol>
-            </div>
+                        <li style={{ accent: "#0D6EFD" }} className="normal-word" onClick={() => this.handleNormalLevel()}>
+                            <div class="icon"><i class="fa-regular fa-face-rolling-eyes"></i></div>
+                            <div class="title">MEDIUM</div>
+                            <div class="descr">The medium level</div>
+                        </li>
+                        <li style={{ accent: "#0D6EFD" }} className="hard-word" onClick={() => this.handleNormalLevel()}>
+                            <div class="icon"><i class="fa-regular fa-face-angry"></i></div>
+                            <div class="title">HARD</div>
+                            <div class="descr">The highest level</div>
+                        </li>
+                    </ol>
+                </div>
+            </>
         )
     }
 

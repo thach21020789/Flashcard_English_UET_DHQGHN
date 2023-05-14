@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './Search.scss';
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
+import { Helmet } from 'react-helmet';
+
 
 class Search extends Component {
     constructor(props) {
@@ -128,6 +130,7 @@ class Search extends Component {
 
         return (
             <div>
+                <Helmet><title>Search</title></Helmet>
                 <div onClick={(e) => { this.handleOnBlur(e) }}>
                     <h1 className='title-search' >Search your word</h1>
                     <form className='search-form' onSubmit={this.handleSubmit} >

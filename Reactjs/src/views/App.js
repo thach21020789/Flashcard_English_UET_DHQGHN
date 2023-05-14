@@ -16,7 +16,6 @@ import Level from "./Flashcard/Levels/Level";
 import TopicList from "./Flashcard/Levels/TopicList";
 import User from "./Admins/User/User"
 import SavedFlashcard from "./Admins/User/SavedFlashcard"
-import { Helmet } from 'react-helmet';
 
 import {
   BrowserRouter,
@@ -28,7 +27,6 @@ import {
 function App() {
   return (
     <>
-      <Helmet><title>Flashcard</title></Helmet>
       <BrowserRouter>
         <Switch>
           <Route path="/login" exact>
