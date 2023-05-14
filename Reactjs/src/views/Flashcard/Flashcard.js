@@ -59,10 +59,10 @@ class Flashcard extends React.Component {
         this.setState({ hovered: false });
     };
 
-    handleToPlaySound = (event) => {
+    handleToPlaySound = (event, word) => {
         const { indexWord, words } = this.state;
         const utterance = new SpeechSynthesisUtterance();
-        utterance.text = words[indexWord].word;
+        utterance.text = word;
         window.speechSynthesis.speak(utterance);
         event.stopPropagation()
     }
@@ -96,13 +96,11 @@ class Flashcard extends React.Component {
 
     }
 
-    cardGoBack
-
-    soundIcon = (
-        <div className='volum' onClick={(event) => this.handleToPlaySound(event)}>
-            <img src="https://ngoaingu24h.vn/resources/images/new/sound.svg"></img>
-        </div>
-    );
+    // soundIcon = (
+    //     <div className='volum' onClick={(event) => this.handleToPlaySound(event)}>
+    //         <img src="https://ngoaingu24h.vn/resources/images/new/sound.svg"></img>
+    //     </div>
+    // );
 
     render() {
         let { indexWord, words, vietNamese } = this.state;
@@ -118,7 +116,9 @@ class Flashcard extends React.Component {
                                 <TinderCard className='TinderCard'>
                                     <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal" onKeyDown={(e) => this.handleKeyDown(e)}>
                                         <div className="card">
-                                            {this.soundIcon}
+                                            <div className='volum' onClick={(event) => this.handleToPlaySound(event, word.word)}>
+                                                <img src="https://ngoaingu24h.vn/resources/images/new/sound.svg"></img>
+                                            </div>
                                             <div className='content-front'>{word.word} </div>
                                             <div className='wordtype' style={{ color: "black" }}>{word.wordtype}</div>
                                             <div className='wordIPA' style={{ color: "black" }}>{word.IPA}</div>
@@ -126,7 +126,9 @@ class Flashcard extends React.Component {
                                         </div>
 
                                         <div className="card">
-                                            {this.soundIcon}
+                                            <div className='volum' onClick={(event) => this.handleToPlaySound(event, word.word)}>
+                                                <img src="https://ngoaingu24h.vn/resources/images/new/sound.svg"></img>
+                                            </div>
                                             <div className='content-front-definition'>{word.definition}</div>
                                             <button type='button' className="buttonSaveWord" onClick={() => this.handleSaveWord(word.id)}
                                                 onMouseOver={() => this.handleMouseOver()}
