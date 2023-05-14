@@ -293,7 +293,7 @@ class MultipleChoice extends Component {
 
         return (
             <Fragment>
-                <Helmet><title>Quiz Page</title></Helmet>
+                <Helmet><title>MiniGame | Quiz</title></Helmet>
                 <Fragment>
                     <audio ref={this.correctSound} src={correctNotification}></audio>
                     <audio ref={this.wrongSound} src={wrongNotification}></audio>

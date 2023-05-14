@@ -4,11 +4,11 @@ import ReactCardFlip from 'react-card-flip';
 import './Flashcard.scss';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
-import { useHistory } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import TinderCard from 'react-tinder-card'
-class Flashcard extends React.Component {
+import TinderCard from 'react-tinder-card';
+import { Helmet } from 'react-helmet';
 
+
+class Flashcard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -108,6 +108,8 @@ class Flashcard extends React.Component {
         let { indexWord, words, vietNamese } = this.state;
         return (
             <>
+                <Helmet><title>Flashcard</title></Helmet>
+
                 <div className='card-container'>
                     <div className="card-list">
                         {this.state.words.map((word, index) => {

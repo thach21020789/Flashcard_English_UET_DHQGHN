@@ -3,6 +3,8 @@ import axios from 'axios';
 import './User.scss';
 import Modal from './Modal'
 import { useHistory, withRouter } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
+
 
 function User() {
     const [user, setUser] = useState('');
@@ -53,23 +55,24 @@ function User() {
         }
     };
 
-
     return (
         <>
-            <div className="user-info">
-                <img
-                    src="https://static.vecteezy.com/system/resources/previews/000/574/512/original/vector-sign-of-user-icon.jpg"
-                    alt="User Avatar"
-                />
-                <h2>{user.fullname}</h2>
-                <p>Email: {user.email}</p>
+            <div><Helmet><title>User</title></Helmet>
+                <div className="user-info">
+                    <img
+                        src="https://static.vecteezy.com/system/resources/previews/000/574/512/original/vector-sign-of-user-icon.jpg"
+                        alt="User Avatar"
+                    />
+                    <h2>{user.fullname}</h2>
+                    <p>Email: {user.email}</p>
 
-                <button className='view-collection-btn' onClick={handleViewCollection}>View collection</button>
-                <button className='change-password-btn' onClick={handleOpenModal}>Change password</button>
-                <button className='logout-btn' onClick={handleClickLogout}>Log out</button>
+                    <button className='view-collection-btn' onClick={handleViewCollection}>View collection</button>
+                    <button className='change-password-btn' onClick={handleOpenModal}>Change password</button>
+                    <button className='logout-btn' onClick={handleClickLogout}>Log out</button>
+                </div>
+
+                {showModal && <Modal show={showModal} handleCloseModal={handleCloseModal} />}
             </div>
-            
-            {showModal && <Modal show={showModal} handleCloseModal={handleCloseModal} />}
         </>
 
     );

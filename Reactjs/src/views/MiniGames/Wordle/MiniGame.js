@@ -4,6 +4,8 @@ import Wordle from './components/Wordle';
 import Help from './components/Help';
 import axios from 'axios'
 import { useHistory } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
+
 
 function MiniGame() {
 
@@ -26,7 +28,7 @@ function MiniGame() {
     };
     checkAuth();
   }, [history]);
-  
+
   useEffect(() => {
     const fetchRandomWord = async () => {
       try {
@@ -43,13 +45,15 @@ function MiniGame() {
   return (
     <>
       <div className="minigame">
+        <Helmet><title>MiniGame | Wordle</title></Helmet>
+
         <h1>MiniGame
           <i className="fa-solid fa-circle-question" onClick={() => setOpen(true)}></i>
           {<Help open={open} onClose={() => setOpen(false)} />}
 
         </h1>
         {solution && <div className="hint">Hint: {solution.category}</div>}
-        {solution && <Wordle solution={solution.word} solutionInfo={solution}/>}
+        {solution && <Wordle solution={solution.word} solutionInfo={solution} />}
       </div>
     </>
   )

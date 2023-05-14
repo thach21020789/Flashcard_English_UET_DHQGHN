@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './ForgotPassword.scss';
+import { Helmet } from 'react-helmet';
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState('');
@@ -23,23 +24,26 @@ const ForgotPassword = () => {
     };
 
     return (
-        <section className="forgotPass-form" onSubmit={handleSubmit}>
-            <div className="form-box-forgotPass">
-                <div className="form-value">
-                    <form action className='value-container'>
-                        <h2 className='forgot-header'>Enter your email</h2>
-                        {message && <div className="message">{message}</div>}
-                        <div className="inputbox">
-                            <ion-icon name="mail-outline" />
-                            <input type="email" id="email" required value={email} autocomplete="off" onChange={(e) => setEmail(e.target.value)} />
-                            <label htmlFor="email">Email</label>
-                        </div>
+        <>
+            <Helmet><title>Reset Password</title></Helmet>
+            <section className="forgotPass-form" onSubmit={handleSubmit}>
+                <div className="form-box-forgotPass">
+                    <div className="form-value">
+                        <form action className='value-container'>
+                            <h2 className='forgot-header'>Enter your email</h2>
+                            {message && <div className="message">{message}</div>}
+                            <div className="inputbox">
+                                <ion-icon name="mail-outline" />
+                                <input type="email" id="email" required value={email} autocomplete="off" onChange={(e) => setEmail(e.target.value)} />
+                                <label htmlFor="email">Email</label>
+                            </div>
 
-                        <button type="submit">Submit</button>
-                    </form>
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </>
     );
 };
 
